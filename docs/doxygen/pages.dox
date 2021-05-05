@@ -1,0 +1,57 @@
+/**
+@mainpage Overview
+@anchor fleet_provisioning
+@brief AWS IoT Fleet Provisioning Client Library
+
+@section fleet_provisioning_memory_requirements Memory Requirements
+@brief Memory requirements of the AWS IoT Fleet Provisioning Client Library.
+
+@include{doc} size_table.html
+ */
+
+/**
+@page fleet_provisioning_design Design
+AWS IoT Fleet Provisioning Client Library Design
+
+*/
+
+/**
+@page fleet_provisioning_config Configurations
+@brief Configurations of the AWS IoT Fleet Provisioning Client Library.
+<!-- @par configpagestyle allows the @section titles to be styled according to style.css -->
+@par configpagestyle
+
+Configuration settings are C pre-processor constants. They can be set with a
+`\#define` in the config file (`fleet_provisoning_config.h`) or by using a compiler option such as -D in gcc.
+
+@section FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG
+@copydoc FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG
+
+@section fleet_provisioning_logerror LogError
+@copydoc LogError
+
+@section fleet_provisioning_logwarn LogWarn
+@copydoc LogWarn
+
+@section fleet_provisioning_loginfo LogInfo
+@copydoc LogInfo
+
+@section fleet_provisioning_logdebug LogDebug
+@copydoc LogDebug
+*/
+
+/**
+@page fleet_provisioning_functions Functions
+@brief Primary functions of the AWS IoT Fleet Provisioning Client Library:<br><br>
+*/
+
+<!-- We do not use doxygen ALIASes here because there have been issues in the past versions with "^^" newlines within the alias definition. -->
+/**
+@defgroup fleet_provisioning_enum_types Enumerated Types
+@brief Enumerated types of the AWS IoT Fleet Provisioning Client Library
+*/
+
+/**
+@defgroup fleet_provisioning_constants Constants
+@brief Constants defined in the AWS IoT Fleet Provisioning Client Library
+*/
