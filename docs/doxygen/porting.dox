@@ -4,7 +4,7 @@
 platform.
 
 @section fleet_provisioning_porting_config Configuration Macros
-@brief Configuration macros that can be set the config header
+@brief Configuration macros that can be set in the config header
 `fleet_provisioning_config.h`, or passed in as compiler options.
 
 The following optional logging macros are used throughout the library:
