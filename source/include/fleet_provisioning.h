@@ -156,7 +156,7 @@ typedef enum
       FLEET_PROVISIONING_API_JSON_FORMAT )
 
 /**
- * @brief Topic string for getting a JSON CreateCertificateFromCSR response.
+ * @brief Topic string for getting a JSON CreateCertificateFromCSR accepted response.
  */
 #define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC \
     ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX            \
@@ -179,7 +179,7 @@ typedef enum
       FLEET_PROVISIONING_API_CBOR_FORMAT )
 
 /**
- * @brief Topic string for getting a CBOR CreateCertificateFromCSR response.
+ * @brief Topic string for getting a CBOR CreateCertificateFromCSR accepted response.
  */
 #define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC \
     ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX            \
@@ -201,7 +201,7 @@ typedef enum
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC ) - 1U ) )
 
 /**
- * @brief Length of topic string for getting a JSON CreateCertificateFromCSR response.
+ * @brief Length of topic string for getting a JSON CreateCertificateFromCSR accepted response.
  */
 #define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC_LENGTH \
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC ) - 1U ) )
@@ -219,7 +219,7 @@ typedef enum
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC ) - 1U ) )
 
 /**
- * @brief Length of topic string for getting a CBOR CreateCertificateFromCSR response.
+ * @brief Length of topic string for getting a CBOR CreateCertificateFromCSR accepted response.
  */
 #define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC_LENGTH \
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC ) - 1U ) )
@@ -242,7 +242,7 @@ typedef enum
       FLEET_PROVISIONING_API_JSON_FORMAT )
 
 /**
- * @brief Topic string for getting a JSON CreateKeysAndCertificate response.
+ * @brief Topic string for getting a JSON CreateKeysAndCertificate accepted response.
  */
 #define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC \
     ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX            \
@@ -266,7 +266,7 @@ typedef enum
       FLEET_PROVISIONING_API_CBOR_FORMAT )
 
 /**
- * @brief Topic string for getting a CBOR CreateKeysAndCertificate response.
+ * @brief Topic string for getting a CBOR CreateKeysAndCertificate accepted response.
  */
 #define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC \
     ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX            \
@@ -289,7 +289,7 @@ typedef enum
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC ) - 1U ) )
 
 /**
- * @brief Length of topic string for getting a JSON CreateKeysAndCertificate response.
+ * @brief Length of topic string for getting a JSON CreateKeysAndCertificate accepted response.
  */
 #define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC_LENGTH \
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC ) - 1U ) )
@@ -307,7 +307,7 @@ typedef enum
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC ) - 1U ) )
 
 /**
- * @brief Length of topic string for getting a CBOR CreateKeysAndCertificate response.
+ * @brief Length of topic string for getting a CBOR CreateKeysAndCertificate accepted response.
  */
 #define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC_LENGTH \
     ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC ) - 1U ) )
@@ -339,7 +339,7 @@ typedef enum
       FLEET_PROVISIONING_API_JSON_FORMAT )
 
 /**
- * @brief Topic string for getting a JSON RegisterThing response.
+ * @brief Topic string for getting a JSON RegisterThing accepted response.
  *
  * This macro should be used when the provisioning template name is known at
  * compile time. If the provisioning template name is not known at compile time,
@@ -386,7 +386,7 @@ typedef enum
       FLEET_PROVISIONING_API_CBOR_FORMAT )
 
 /**
- * @brief Topic string for getting a CBOR RegisterThing response.
+ * @brief Topic string for getting a CBOR RegisterThing accepted response.
  *
  * This macro should be used when the provisioning template name is known at
  * compile time. If the provisioning template name is not known at compile time,
@@ -424,7 +424,7 @@ typedef enum
  * compile time. If the provisioning template name is not known at compile time,
  * the #FleetProvisioning_GetRegisterThingTopic API should be used instead.
  *
- * @param templateNameLength The name of the provisioning template to use.
+ * @param templateNameLength The length of the provisioning template name.
  */
 #define FLEET_PROVISIONING_JSON_REGISTER_THING_PUBLISH_TOPIC_LENGTH( templateNameLength ) \
     ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                               \
@@ -433,13 +433,13 @@ typedef enum
       FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT )
 
 /**
- * @brief Length of topic string for getting a JSON RegisterThing response.
+ * @brief Length of topic string for getting a JSON RegisterThing accepted response.
  *
  * This macro should be used when the provisioning template name is known at
  * compile time. If the provisioning template name is not known at compile time,
  * the #FleetProvisioning_GetRegisterThingTopic API should be used instead.
  *
- * @param templateNameLength The name of the provisioning template to use.
+ * @param templateNameLength The length of the provisioning template name.
  */
 #define FLEET_PROVISIONING_JSON_REGISTER_THING_ACCEPTED_TOPIC_LENGTH( templateNameLength ) \
     ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
@@ -455,7 +455,7 @@ typedef enum
  * compile time. If the provisioning template name is not known at compile time,
  * the #FleetProvisioning_GetRegisterThingTopic API should be used instead.
  *
- * @param templateNameLength The name of the provisioning template to use.
+ * @param templateNameLength The length of the provisioning template name.
  */
 #define FLEET_PROVISIONING_JSON_REGISTER_THING_REJECTED_TOPIC_LENGTH( templateNameLength ) \
     ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
@@ -471,7 +471,7 @@ typedef enum
  * compile time. If the provisioning template name is not known at compile time,
  * the #FleetProvisioning_GetRegisterThingTopic API should be used instead.
  *
- * @param templateNameLength The name of the provisioning template to use.
+ * @param templateNameLength The length of the provisioning template name.
  */
 #define FLEET_PROVISIONING_CBOR_REGISTER_THING_PUBLISH_TOPIC_LENGTH( templateNameLength ) \
     ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                               \
@@ -480,13 +480,13 @@ typedef enum
       FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT )
 
 /**
- * @brief Length of topic string for getting a CBOR RegisterThing response.
+ * @brief Length of topic string for getting a CBOR RegisterThing accepted response.
  *
  * This macro should be used when the provisioning template name is known at
  * compile time. If the provisioning template name is not known at compile time,
  * the #FleetProvisioning_GetRegisterThingTopic API should be used instead.
  *
- * @param templateNameLength The name of the provisioning template to use.
+ * @param templateNameLength The length of the provisioning template name.
  */
 #define FLEET_PROVISIONING_CBOR_REGISTER_THING_ACCEPTED_TOPIC_LENGTH( templateNameLength ) \
     ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
@@ -502,7 +502,7 @@ typedef enum
  * compile time. If the provisioning template name is not known at compile time,
  * the #FleetProvisioning_GetRegisterThingTopic API should be used instead.
  *
- * @param templateNameLength The name of the provisioning template to use.
+ * @param templateNameLength The length of the provisioning template name.
  */
 #define FLEET_PROVISIONING_CBOR_REGISTER_THING_REJECTED_TOPIC_LENGTH( templateNameLength ) \
     ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
