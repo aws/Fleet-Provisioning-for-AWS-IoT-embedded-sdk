@@ -513,4 +513,67 @@ typedef enum
 
 /*-----------------------------------------------------------*/
 
+/**
+ * @brief Populate the topic string for a Fleet Provisioning RegisterThing topic.
+ *
+ * @param[in] pBuffer The buffer to write the topic string into.
+ * @param[in] bufferLength The length of the buffer.
+ * @param[in] format The desired RegisterThing format.
+ * @param[in] topic The desired RegisterThing topic.
+ * @param[in] pTemplateName The name of the provisioning template configured
+ *     with AWS IoT.
+ * @param[in] templateNameLength The length of the provisioning template name.
+ * @param[out] pOutLength The length of the topic string written to the buffer.
+ *
+ * @return FleetProvisioningSuccess if the topic string is written to the buffer;
+ * FleetProvisioningBadParameter if invalid parameters, such as non-RegisterThing topics, are passed;
+ * FleetProvisioningBufferTooSmall if the buffer cannot hold the full topic string.
+ *
+ * <b>example</b>
+ * @code{c}
+ *
+ * // The following example shows how to use the FleetProvisioning_GetRegisterThingTopic
+ * // function to generate a topic string for getting an accepted response for
+ * // a JSON RegisterThing request.
+ *
+ * #define TOPIC_BUFFER_LENGTH      ( 256u )
+ *
+ * // In order to use the AWS IoT Fleet Provisioning service, there must be a
+ * // provisioning template registered with AWS IoT Core.
+ * // This example assumes that the template name for the intended template is
+ * // "template_name".
+ * #define TEMPLATE_NAME "tempate_name"
+ * #define TEMPLATE_NAME_LENGTH ( ( uint16_t ) ( sizeof( TEMPLATE_NAME ) - 1U )
+ * char pTopicbuffer[ TOPIC_BUFFER_LENGTH ] = { 0 };
+ * uint16_t topicLength = 0;
+ * FleetProvisioningStatus_t status = FleetProvisioningError;
+ *
+ * status = FleetProvisioning_GetRegisterThingTopic( pTopicBuffer,
+ *                                                   TOPIC_BUFFER_LENGTH,
+ *                                                   FleetProvisioningJson,
+ *                                                   FleetProvisioningAccepted,
+ *                                                   TEMPLATE_NAME,
+ *                                                   TEMPLATE_NAME_LENGTH,
+ *                                                   &( topiclength ) );
+ *
+ * if( status == FleetProvisioningSuccess )
+ * {
+ *      // The buffer pTopicBuffer contains the topic string of length
+ *      // topiclength for getting a response for an accepted JSON RegisterThing
+ *      // request. Subscribe to this topic using an MQTT client of your choice.
+ * }
+ * @endcode
+ */
+/* @[declare_fleet_provisioning_getregisterthingtopic] */
+FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pBuffer,
+                                                                   uint16_t bufferLength,
+                                                                   FleetProvisioningFormat_t format,
+                                                                   FleetProvisioningApiTopics_t topic,
+                                                                   const char * pTemplateName,
+                                                                   uint16_t templateNameLength,
+                                                                   uint16_t * pOutLength );
+/* @[declare_fleet_provisioning_getregisterthingtopic] */
+
+/*-----------------------------------------------------------*/
+
 #endif /* FLEET_PROVISIONING_H_ */

@@ -211,3 +211,276 @@ void test_RegisterThing_MacrosLength( void )
                        FLEET_PROVISIONING_CBOR_REGISTER_THING_REJECTED_TOPIC_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
 }
 /*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_BadParams( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    /* Null buffer. */
+    ret = FleetProvisioning_GetRegisterThingTopic( NULL,
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+
+    /* Invalid Format. */
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningCbor + 1,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+
+    /* Invalid api. */
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningCbor,
+                                                   FleetProvisioningRejected + 1,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+
+    /* NULL template name. */
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningPublish,
+                                                   NULL,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+
+    /* Zero length thing name. */
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   0,
+                                                   &( topicLength ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+
+    /* Thing name length more than the maximum allowed. */
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   FLEET_PROVISIONING_TEMPLATENAME_MAX_LENGTH + 1,
+                                                   &( topicLength ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+
+    /* NULL output parameter. */
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   NULL );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_BufferTooSmall( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   5, /* Length too small to fit the entire topic. */
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBufferTooSmall, ret );
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_JsonPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC_LENGTH, topicLength );
+
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC,
+                                  &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                  topicLength );
+
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH + topicLength ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH - topicLength );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_JsonAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningAccepted,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC_LENGTH, topicLength );
+
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC,
+                                  &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                  topicLength );
+
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH + topicLength ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH - topicLength );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_JsonRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningJson,
+                                                   FleetProvisioningRejected,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_REJECTED_TOPIC_LENGTH, topicLength );
+
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_REJECTED_TOPIC,
+                                  &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                  topicLength );
+
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH + topicLength ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH - topicLength );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_CborPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningCbor,
+                                                   FleetProvisioningPublish,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC_LENGTH, topicLength );
+
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC,
+                                  &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                  topicLength );
+
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH + topicLength ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH - topicLength );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_CborAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningCbor,
+                                                   FleetProvisioningAccepted,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC_LENGTH, topicLength );
+
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC,
+                                  &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                  topicLength );
+
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH + topicLength ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH - topicLength );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_GetRegisterThingTopic_CborRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    uint16_t topicLength;
+
+    ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                                   TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
+                                                   FleetProvisioningCbor,
+                                                   FleetProvisioningRejected,
+                                                   TEST_TEMPLATE_NAME,
+                                                   TEST_TEMPLATE_NAME_LENGTH,
+                                                   &( topicLength ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC_LENGTH, topicLength );
+
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC,
+                                  &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
+                                  topicLength );
+
+    TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
+                                 &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH + topicLength ] ),
+                                 TEST_TOPIC_BUFFER_WRITABLE_LENGTH - topicLength );
+}
+/*-----------------------------------------------------------*/
