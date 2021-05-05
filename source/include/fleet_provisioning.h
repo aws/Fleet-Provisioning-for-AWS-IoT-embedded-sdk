@@ -513,4 +513,64 @@ typedef enum
 
 /*-----------------------------------------------------------*/
 
+/**
+ * @brief Check if the given topic is one of the Fleet Provisioning topics.
+ *
+ * The function outputs which API the topic is for.
+ *
+ * @param[in] pTopic The topic string to check.
+ * @param[in] topicLength The length of the topic string.
+ * @param[out] pOutApi The Fleet Provisioning topic API value.
+ *
+ * @return FleetProvisioningSuccess if the topic is one of the Fleet Provisioning topics;
+ * FleetProvisioningBadParameter if invalid parameters are passed;
+ * FleetProvisioningNoMatch if the topic is NOT one of the Fleet Provisioning topics (parameter
+ * pOutApi gets FleetProvisioningInvalidTopic).
+ *
+ * <b>Example</b>
+ * @code{c}
+ *
+ * // The following example shows how to use the FleetProvisioning_MatchTopic
+ * // function to check if an incoming MQTT publish message is a Fleet
+ * // Provisioning message.
+ *
+ * FleetProvisioningTopic_t api;
+ * FleetProvisioningStatus_t status = FleetProvisioningError;
+ *
+ * // pTopic and topicLength are the topic string and length of the topic on
+ * // which the publish message is received. These are usually provided by the
+ * // MQTT client used.
+ * status = FleetProvisioning_MatchTopic( pTopic
+ *                                        topicLength,
+ *                                        &( api ) );
+ *
+ * if( status == FleetProvisioningSuccess )
+ * {
+ *      if( api == FleetProvisioningJsonCreateCertificateFromCsrAccepted )
+ *      {
+ *          // The published JSON request was accepted and completed by the AWS
+ *          // IoT Fleet Provisioning service. You can parse the response using
+ *          // your choice of JSON parser get the certificate, ID, and ownership
+ *          // token.
+ *      }
+ *      else if( api == FleetProvisioningJsonCreateCertificateFromCsrRejected )
+ *      {
+ *          // The published JSON request was rejected by the AWS IoT Fleet
+ *          // Provisioning service.
+ *      }
+ *      else
+ *      {
+ *          // Unexpected response.
+ *      }
+ * }
+ * @endcode
+ */
+/* @[declare_fleet_provisioning_matchtopic] */
+FleetProvisioningStatus_t FleetProvisioning_MatchTopic( const char * pTopic,
+                                                        uint16_t topicLength,
+                                                        FleetProvisioningTopic_t * pOutApi );
+/* @[declare_fleet_provisioning_matchtopic] */
+
+/*-----------------------------------------------------------*/
+
 #endif /* FLEET_PROVISIONING_H_ */
