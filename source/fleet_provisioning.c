@@ -37,7 +37,7 @@
  * @brief Identifier for which of the topic suffixes for a given format and
  * Fleet Provisioning MQTT API.
  */
-typedef enum
+typedef enum TopicSuffix
 {
     TopicPublish,
     TopicAccepted,
@@ -48,7 +48,7 @@ typedef enum
 /**
  * @brief Identifier for which of the topics in each Fleet Provisioning MQTT API.
  */
-typedef enum
+typedef enum TopicFormatSuffix
 {
     TopicJsonPublish,
     TopicJsonAccepted,
