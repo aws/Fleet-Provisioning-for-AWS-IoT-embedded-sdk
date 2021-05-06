@@ -34,12 +34,12 @@
 #include "fleet_provisioning.h"
 
 /**
- * @brief get the topic length for a given RegisterThing topic.
+ * @brief Get the topic length for a given RegisterThing topic.
  *
  * @param[in] templateNameLength the length of the template name registered with
  * AWS IoT.
- * @param[in] format Which of the RegisterThing API formats.
- * @param[in] topic Which of the RegisterThing API topics.
+ * @param[in] format The RegisterThing API format to use.
+ * @param[in] topic The RegisterThing API format to use.
  *
  * @return the template length for the given RegisterThing topic.
  */
@@ -56,7 +56,7 @@ static uint16_t getRegisterThingTopicLength( uint16_t templateNameLength,
  *
  * @param[in, out] pRemainingBuffer Pointer to the remaining buffer
  * @param[in] fragment The piece of the topic string to write.
- * @param[in] length The length of fragment.
+ * @param[in] length The length of @p fragment.
  */
 static void writeTopicFragmentAndAdvance( char ** pRemainingBuffer,
                                           const char * fragment,
@@ -65,19 +65,19 @@ static void writeTopicFragmentAndAdvance( char ** pRemainingBuffer,
 /**
  * @brief Check the parameters for FleetProvisioning_GetRegisterThingTopic().
  *
- * @param[in] pBuffer The buffer to write the topic string into.
+ * @param[in] pTopicBuffer The buffer to write the topic string into.
  * @param[in] format The desired RegisterThing format.
  * @param[in] topic The desired RegisterThing topic.
  * @param[in] pTemplateName The name of the provisioning template configured
  *     with AWS IoT.
- * @param[in] templateNameLength The length of the provisioning template name.
+ * @param[in] templateNameLength The length of @p pTemplateName.
  * @param[in] pOutLength Pointer to the length of the topic string written to
  * the buffer.
  *
  * @return FleetProvisioningSuccess if no errors are found with the parameters;
  * FleetProvisioningBadParameter otherwise.
  */
-static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pBuffer,
+static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pTopicBuffer,
                                                                    FleetProvisioningFormat_t format,
                                                                    FleetProvisioningApiTopics_t topic,
                                                                    const char * pTemplateName,
@@ -136,7 +136,7 @@ static void writeTopicFragmentAndAdvance( char ** pRemainingBuffer,
 }
 /*-----------------------------------------------------------*/
 
-static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pBuffer,
+static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pTopicBuffer,
                                                                    FleetProvisioningFormat_t format,
                                                                    FleetProvisioningApiTopics_t topic,
                                                                    const char * pTemplateName,
@@ -145,7 +145,7 @@ static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pBuffe
 {
     FleetProvisioningStatus_t ret = FleetProvisioningError;
 
-    if( ( pBuffer == NULL ) ||
+    if( ( pTopicBuffer == NULL ) ||
         ( format < FleetProvisioningJson ) ||
         ( format > FleetProvisioningCbor ) ||
         ( topic < FleetProvisioningPublish ) ||
@@ -157,10 +157,9 @@ static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pBuffe
     {
         ret = FleetProvisioningBadParameter;
 
-        LogError( ( "Invalid input parameter. pBuffer: %p, bufferLength: %u, "
-                    "format: %d, topic: %d, pTemplateName: %p, "
-                    "templateNameLength: %u, pOutLength: %p.",
-                    ( void * ) pBuffer,
+        LogError( ( "Invalid input parameter. pTopicBuffer: %p, bufferLength: %u, format: %d, "
+                    "topic: %d, pTemplateName: %p, templateNameLength: %u, pOutLength: %p.",
+                    ( void * ) pTopicBuffer,
                     ( unsigned int ) bufferLength,
                     ( int ) format,
                     ( int ) topic,
@@ -177,7 +176,7 @@ static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pBuffe
 }
 /*-----------------------------------------------------------*/
 
-FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pBuffer,
+FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopicBuffer,
                                                                    uint16_t bufferLength,
                                                                    FleetProvisioningFormat_t format,
                                                                    FleetProvisioningApiTopics_t topic,
@@ -189,7 +188,7 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pBuffe
     uint16_t topicLength = 0U;
     char * pRemainingBuffer = NULL;
 
-    status = GetRegisterThingTopicCheckParams( pBuffer,
+    status = GetRegisterThingTopicCheckParams( pTopicBuffer,
                                                format,
                                                topic,
                                                pTemplateName,
@@ -211,7 +210,7 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pBuffe
         }
     }
 
-    pRemainingBuffer = pBuffer;
+    pRemainingBuffer = pTopicBuffer;
 
     if( status == FleetProvisioningSuccess )
     {

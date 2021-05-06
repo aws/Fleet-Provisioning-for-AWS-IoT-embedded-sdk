@@ -516,8 +516,8 @@ typedef enum
 /**
  * @brief Populate the topic string for a Fleet Provisioning RegisterThing topic.
  *
- * @param[in] pBuffer The buffer to write the topic string into.
- * @param[in] bufferLength The length of the buffer.
+ * @param[out] pTopicBuffer The buffer to write the topic string into.
+ * @param[in] bufferLength The length of @p pTopicBuffer.
  * @param[in] format The desired RegisterThing format.
  * @param[in] topic The desired RegisterThing topic.
  * @param[in] pTemplateName The name of the provisioning template configured
@@ -540,9 +540,8 @@ typedef enum
  *
  * // In order to use the AWS IoT Fleet Provisioning service, there must be a
  * // provisioning template registered with AWS IoT Core.
- * // This example assumes that the template name for the intended template is
- * // "template_name".
- * #define TEMPLATE_NAME "tempate_name"
+ * // This example assumes that the template is named "template_name".
+ * #define TEMPLATE_NAME "template_name"
  * #define TEMPLATE_NAME_LENGTH ( ( uint16_t ) ( sizeof( TEMPLATE_NAME ) - 1U )
  * char pTopicbuffer[ TOPIC_BUFFER_LENGTH ] = { 0 };
  * uint16_t topicLength = 0;
@@ -559,13 +558,13 @@ typedef enum
  * if( status == FleetProvisioningSuccess )
  * {
  *      // The buffer pTopicBuffer contains the topic string of length
- *      // topiclength for getting a response for an accepted JSON RegisterThing
+ *      // topicLength for getting a response for an accepted JSON RegisterThing
  *      // request. Subscribe to this topic using an MQTT client of your choice.
  * }
  * @endcode
  */
 /* @[declare_fleet_provisioning_getregisterthingtopic] */
-FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pBuffer,
+FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopicBuffer,
                                                                    uint16_t bufferLength,
                                                                    FleetProvisioningFormat_t format,
                                                                    FleetProvisioningApiTopics_t topic,
