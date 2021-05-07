@@ -71,7 +71,7 @@ static void writeTopicFragmentAndAdvance( char ** pRemainingBuffer,
  * @param[in] pTemplateName The name of the provisioning template configured
  *     with AWS IoT.
  * @param[in] templateNameLength The length of @p pTemplateName.
- * @param[in] pOutLength Pointer to the length of the topic string written to
+ * @param[in] pOutLength The length of the topic string written to
  * the buffer.
  *
  * @return FleetProvisioningSuccess if no errors are found with the parameters;
@@ -129,9 +129,14 @@ static void writeTopicFragmentAndAdvance( char ** pRemainingBuffer,
                                           const char * fragment,
                                           uint16_t length )
 {
+    assert( pRemainingBuffer != NULL );
+    assert( *pRemainingBuffer != NULL );
+    assert( fragment != NULL );
+
     ( void ) memcpy( ( void * ) *pRemainingBuffer,
                      ( const void * ) fragment,
                      ( size_t ) length );
+
     *pRemainingBuffer += length;
 }
 /*-----------------------------------------------------------*/
@@ -186,7 +191,7 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
 {
     FleetProvisioningStatus_t status = FleetProvisioningError;
     uint16_t topicLength = 0U;
-    char * pRemainingBuffer = NULL;
+    char * pBufferCursor = pTopicBuffer;
 
     status = GetRegisterThingTopicCheckParams( pTopicBuffer,
                                                format,
@@ -210,39 +215,37 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
         }
     }
 
-    pRemainingBuffer = pTopicBuffer;
-
     if( status == FleetProvisioningSuccess )
     {
         /* At this point, it is certain that we have a large enough buffer to
          * write the topic string into. */
 
         /* Write prefix first. */
-        writeTopicFragmentAndAdvance( &pRemainingBuffer,
+        writeTopicFragmentAndAdvance( &pBufferCursor,
                                       FLEET_PROVISIONING_REGISTER_THING_API_PREFIX,
                                       FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX );
 
         /* Write template name next. */
-        writeTopicFragmentAndAdvance( &pRemainingBuffer,
+        writeTopicFragmentAndAdvance( &pBufferCursor,
                                       pTemplateName,
                                       templateNameLength );
 
         /* Write bridge next. */
-        writeTopicFragmentAndAdvance( &pRemainingBuffer,
+        writeTopicFragmentAndAdvance( &pBufferCursor,
                                       FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE,
                                       FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE );
 
         /* Write report format. */
         if( format == FleetProvisioningJson )
         {
-            writeTopicFragmentAndAdvance( &pRemainingBuffer,
+            writeTopicFragmentAndAdvance( &pBufferCursor,
                                           FLEET_PROVISIONING_API_JSON_FORMAT,
                                           FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT );
         }
 
         if( format == FleetProvisioningCbor )
         {
-            writeTopicFragmentAndAdvance( &pRemainingBuffer,
+            writeTopicFragmentAndAdvance( &pBufferCursor,
                                           FLEET_PROVISIONING_API_CBOR_FORMAT,
                                           FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT );
         }
@@ -250,14 +253,14 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
         /* Write report suffix. */
         if( topic == FleetProvisioningAccepted )
         {
-            writeTopicFragmentAndAdvance( &pRemainingBuffer,
+            writeTopicFragmentAndAdvance( &pBufferCursor,
                                           FLEET_PROVISIONING_API_ACCEPTED_SUFFIX,
                                           FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX );
         }
 
         if( topic == FleetProvisioningRejected )
         {
-            writeTopicFragmentAndAdvance( &pRemainingBuffer,
+            writeTopicFragmentAndAdvance( &pBufferCursor,
                                           FLEET_PROVISIONING_API_REJECTED_SUFFIX,
                                           FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX );
         }
