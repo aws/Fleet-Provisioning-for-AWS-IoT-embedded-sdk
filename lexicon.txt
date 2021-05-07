@@ -50,6 +50,7 @@ mqtt
 noninfringement
 param
 pbuffer
+pbuffercursor
 posix
 poutapi
 poutlength
@@ -61,6 +62,7 @@ premainingtopic
 ptemplatename
 ptopic
 ptopicbuffer
+ptopiccursor
 registerthing
 remaininglength
 ret

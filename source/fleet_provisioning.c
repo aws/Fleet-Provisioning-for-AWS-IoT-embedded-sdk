@@ -65,8 +65,8 @@ typedef enum TopicFormatSuffix
  *
  * Suffix: empty, /accepted, or /rejected.
  *
- * @param[in] pRemainingTopic Starting location of the unparsed topic.
- * @param[in] remainingLength The length of the unparsed topic.
+ * @param[in] pRemainingTopic The remaining portion of the topic.
+ * @param[in] remainingLength The remaining length of the topic.
  *
  * @return The matching #TopicSuffix_t.
  */
@@ -80,8 +80,8 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
  * Format: json or cbor.
  * Suffix: empty, /accepted, or /rejected.
  *
- * @param[in] pRemainingTopic Starting location of the unparsed topic.
- * @param[in] remainingLength The length of the unparsed topic.
+ * @param[in] pRemainingTopic The remaining portion of the topic.
+ * @param[in] remainingLength The remaining length of the topic.
  *
  * @return The matching #TopicFormatSuffix_t.
  */
@@ -91,8 +91,8 @@ static TopicFormatSuffix_t parseTopicFormatSuffix( const char * pRemainingTopic,
 /**
  * @brief Match a topic string with the CreateCertificateFromCsr topics.
  *
- * @param[in] pTopic Starting location of the unparsed topic.
- * @param[in] topicLength The length of the unparsed topic.
+ * @param[in] pTopic The topic string to match.
+ * @param[in] topicLength The length of the topic string.
  *
  * @return The matching #FleetProvisioningTopic_t if the topic string is a
  *     Fleet Provisioning CreateCertificateFromCsr topic, else
@@ -104,8 +104,8 @@ static FleetProvisioningTopic_t parseCreateCertificateFromCsrTopic( const char *
 /**
  * @brief Match a topic string with the CreateKeysAndCertificate topics.
  *
- * @param[in] pTopic Starting location of the unparsed topic.
- * @param[in] topicLength The length of the unparsed topic.
+ * @param[in] pTopic The topic string to match.
+ * @param[in] topicLength The length of the topic string.
  *
  * @return The matching FleetProvisioningTopic_t if the topic string is a
  *     Fleet Provisioning CreateKeysAndCertificate topic, else
@@ -117,8 +117,8 @@ static FleetProvisioningTopic_t parseCreateKeysAndCertificateTopic( const char *
 /**
  * @brief Match a topic string with the RegisterThing topics.
  *
- * @param[in] pTopic Starting location of the unparsed topic.
- * @param[in] topicLength The length of the unparsed topic.
+ * @param[in] pTopic The topic string to match.
+ * @param[in] topicLength The length of the topic string.
  *
  * @return The matching #FleetProvisioningTopic_t if the topic string is a
  *     Fleet Provisioning RegisterThing topic, else
@@ -128,26 +128,26 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
                                                          uint16_t topicLength );
 
 /**
- * @brief Check if the remaining topic string starts with a string to match
- * against. If so, moves the remaining topic pointer past the matched section
- * and updates the remaining length.
+ * @brief Check if the remaining buffer starts with a specified string. If so,
+ * moves the remaining buffer pointer past the matched section and updates the
+ * remaining length.
  *
- * @param[in, out] pRemainingTopic Pointer to the remaining topic string.
- * @param[in, out] pRemainingLength Pointer to the length of the remaining topic string.
+ * @param[in, out] pBufferCursor Pointer to the remaining portion of the buffer.
+ * @param[in, out] pRemainingLength The remaining length of the buffer.
  * @param[in] matchString The string to match against.
- * @param[in] matchLength The length of matchString.
+ * @param[in] matchLength The length of @p matchString.
  *
  * @return FleetProvisioningSuccess if the string matches and is skipped over;
  * FleetProvisioningNoMatch otherwise.
  */
-static FleetProvisioningStatus_t consumeIfMatch( const char ** pRemainingTopic,
+static FleetProvisioningStatus_t consumeIfMatch( const char ** pBufferCursor,
                                                  uint16_t * pRemainingLength,
                                                  const char * matchString,
                                                  uint16_t matchLength );
 
 /**
- * @brief Move the topic pointer past the template name in the unparsed topic so
- * far, and update the remaining topic length.
+ * @brief Move the remaining topic pointer past the template name in the
+ * unparsed topic so far, and update the remaining topic length.
  *
  * The end of thing name is marked by a forward slash. A zero length thing name
  * is not valid.
@@ -158,13 +158,13 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pRemainingTopic,
  * The second topic is not a valid Fleet Provisioning topic and the matching
  * will fail when we try to match the bridge part.
  *
- * @param[in, out] pRemainingTopic Pointer to the remaining topic string.
+ * @param[in, out] pTopicCursor Pointer to the remaining topic string.
  * @param[in, out] remainingLength Pointer to the length of the remaining topic string.
  *
  * @return FleetProvisioningSuccess if a valid template name is skipped over;
  * FleetProvisioningNoMatch otherwise.
  */
-static FleetProvisioningStatus_t consumeTemplateName( const char ** pRemainingTopic,
+static FleetProvisioningStatus_t consumeTemplateName( const char ** pTopicCursor,
                                                       uint16_t * remainingLength );
 /*-----------------------------------------------------------*/
 
@@ -173,11 +173,13 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
 {
     TopicSuffix_t ret = TopicInvalidSuffix;
     FleetProvisioningStatus_t status = FleetProvisioningNoMatch;
+    const char * pTopicCursor = pRemainingTopic;
+    uint16_t cursorLength = remainingLength;
 
     assert( pRemainingTopic != NULL );
 
     /* Check if publish topic */
-    if( remainingLength == 0 )
+    if( cursorLength == 0 )
     {
         ret = TopicPublish;
         status = FleetProvisioningSuccess;
@@ -186,14 +188,14 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
     /* Check if accepted topic */
     if( status == FleetProvisioningNoMatch )
     {
-        status = consumeIfMatch( &pRemainingTopic,
-                                 &remainingLength,
+        status = consumeIfMatch( &pTopicCursor,
+                                 &cursorLength,
                                  FLEET_PROVISIONING_API_ACCEPTED_SUFFIX,
                                  FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX );
 
         if( status == FleetProvisioningSuccess )
         {
-            if( remainingLength == 0 )
+            if( cursorLength == 0 )
             {
                 ret = TopicAccepted;
             }
@@ -207,14 +209,14 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
     /* Check if rejected topic */
     if( status == FleetProvisioningNoMatch )
     {
-        status = consumeIfMatch( &pRemainingTopic,
-                                 &remainingLength,
+        status = consumeIfMatch( &pTopicCursor,
+                                 &cursorLength,
                                  FLEET_PROVISIONING_API_REJECTED_SUFFIX,
                                  FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX );
 
         if( status == FleetProvisioningSuccess )
         {
-            if( remainingLength == 0 )
+            if( cursorLength == 0 )
             {
                 ret = TopicRejected;
             }
@@ -251,34 +253,36 @@ static TopicFormatSuffix_t parseTopicFormatSuffix( const char * pRemainingTopic,
     TopicFormatSuffix_t ret = TopicInvalidFormatSuffix;
     TopicSuffix_t suffix = TopicInvalidSuffix;
     FleetProvisioningStatus_t status = FleetProvisioningNoMatch;
+    const char * pTopicCursor = pRemainingTopic;
+    uint16_t cursorLength = remainingLength;
 
     assert( pRemainingTopic != NULL );
 
     /* Check if JSON format */
-    status = consumeIfMatch( &pRemainingTopic,
-                             &remainingLength,
+    status = consumeIfMatch( &pTopicCursor,
+                             &cursorLength,
                              FLEET_PROVISIONING_API_JSON_FORMAT,
                              FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT );
 
     if( status == FleetProvisioningSuccess )
     {
         /* Match suffix */
-        suffix = parseTopicSuffix( pRemainingTopic, remainingLength );
+        suffix = parseTopicSuffix( pTopicCursor, cursorLength );
         ret = jsonSuffixes[ suffix ];
     }
 
     if( status == FleetProvisioningNoMatch )
     {
         /* Check if CBOR format */
-        status = consumeIfMatch( &pRemainingTopic,
-                                 &remainingLength,
+        status = consumeIfMatch( &pTopicCursor,
+                                 &cursorLength,
                                  FLEET_PROVISIONING_API_CBOR_FORMAT,
                                  FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT );
 
         if( status == FleetProvisioningSuccess )
         {
             /* Match suffix */
-            suffix = parseTopicSuffix( pRemainingTopic, remainingLength );
+            suffix = parseTopicSuffix( pTopicCursor, cursorLength );
             ret = cborSuffixes[ suffix ];
         }
     }
@@ -304,24 +308,21 @@ static FleetProvisioningTopic_t parseCreateCertificateFromCsrTopic( const char *
     FleetProvisioningTopic_t ret = FleetProvisioningInvalidTopic;
     FleetProvisioningStatus_t status = FleetProvisioningError;
     TopicFormatSuffix_t rest = TopicInvalidFormatSuffix;
-    const char * pRemainingTopic = NULL;
-    uint16_t remainingLength = 0U;
+    const char * pTopicCursor = pTopic;
+    uint16_t cursorLength = topicLength;
 
     assert( pTopic != NULL );
 
-    pRemainingTopic = pTopic;
-    remainingLength = topicLength;
-
     /* Check if prefix matches */
-    status = consumeIfMatch( &pRemainingTopic,
-                             &remainingLength,
+    status = consumeIfMatch( &pTopicCursor,
+                             &cursorLength,
                              FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX,
                              FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_LENGTH_PREFIX );
 
     if( status == FleetProvisioningSuccess )
     {
         /* Match format and suffix */
-        rest = parseTopicFormatSuffix( pRemainingTopic, remainingLength );
+        rest = parseTopicFormatSuffix( pTopicCursor, cursorLength );
         ret = createCertificateFromCsrApi[ rest ];
     }
 
@@ -346,24 +347,21 @@ static FleetProvisioningTopic_t parseCreateKeysAndCertificateTopic( const char *
     FleetProvisioningTopic_t ret = FleetProvisioningInvalidTopic;
     FleetProvisioningStatus_t status = FleetProvisioningError;
     TopicFormatSuffix_t rest = TopicInvalidFormatSuffix;
-    const char * pRemainingTopic = NULL;
-    uint16_t remainingLength = 0U;
+    const char * pTopicCursor = pTopic;
+    uint16_t cursorLength = topicLength;
 
     assert( pTopic != NULL );
 
-    pRemainingTopic = pTopic;
-    remainingLength = topicLength;
-
     /* Check if prefix matches */
-    status = consumeIfMatch( &pRemainingTopic,
-                             &remainingLength,
+    status = consumeIfMatch( &pTopicCursor,
+                             &cursorLength,
                              FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX,
                              FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_LENGTH_PREFIX );
 
     if( status == FleetProvisioningSuccess )
     {
         /* Match format and suffix */
-        rest = parseTopicFormatSuffix( pRemainingTopic, remainingLength );
+        rest = parseTopicFormatSuffix( pTopicCursor, cursorLength );
         ret = createKeysAndCertificateApi[ rest ];
     }
 
@@ -388,32 +386,29 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
     FleetProvisioningTopic_t ret = FleetProvisioningInvalidTopic;
     FleetProvisioningStatus_t status = FleetProvisioningError;
     TopicFormatSuffix_t rest = TopicInvalidFormatSuffix;
-    const char * pRemainingTopic = NULL;
-    uint16_t remainingLength = 0U;
+    const char * pTopicCursor = pTopic;
+    uint16_t cursorLength = topicLength;
 
     assert( pTopic != NULL );
 
-    pRemainingTopic = pTopic;
-    remainingLength = topicLength;
-
     /* Check if prefix matches */
-    status = consumeIfMatch( &pRemainingTopic,
-                             &remainingLength,
+    status = consumeIfMatch( &pTopicCursor,
+                             &cursorLength,
                              FLEET_PROVISIONING_REGISTER_THING_API_PREFIX,
                              FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX );
 
     if( status == FleetProvisioningSuccess )
     {
         /* Skip template name */
-        status = consumeTemplateName( &pRemainingTopic,
-                                      &remainingLength );
+        status = consumeTemplateName( &pTopicCursor,
+                                      &cursorLength );
     }
 
     if( status == FleetProvisioningSuccess )
     {
         /* Check if bridge matches */
-        status = consumeIfMatch( &pRemainingTopic,
-                                 &remainingLength,
+        status = consumeIfMatch( &pTopicCursor,
+                                 &cursorLength,
                                  FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE,
                                  FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE );
     }
@@ -421,7 +416,7 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
     if( status == FleetProvisioningSuccess )
     {
         /* Match format and suffix */
-        rest = parseTopicFormatSuffix( pRemainingTopic, remainingLength );
+        rest = parseTopicFormatSuffix( pTopicCursor, cursorLength );
         ret = registerThingApi[ rest ];
     }
 
@@ -429,7 +424,7 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
 }
 /*-----------------------------------------------------------*/
 
-static FleetProvisioningStatus_t consumeIfMatch( const char ** pRemainingTopic,
+static FleetProvisioningStatus_t consumeIfMatch( const char ** pBufferCursor,
                                                  uint16_t * pRemainingLength,
                                                  const char * matchString,
                                                  uint16_t matchLength )
@@ -437,8 +432,8 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pRemainingTopic,
     FleetProvisioningStatus_t status = FleetProvisioningError;
     int cmpVal = -1;
 
-    assert( pRemainingTopic != NULL );
-    assert( *pRemainingTopic != NULL );
+    assert( pBufferCursor != NULL );
+    assert( *pBufferCursor != NULL );
     assert( pRemainingLength != NULL );
     assert( matchString != NULL );
 
@@ -448,7 +443,7 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pRemainingTopic,
     }
     else
     {
-        cmpVal = strncmp( *pRemainingTopic,
+        cmpVal = strncmp( *pBufferCursor,
                           matchString,
                           ( size_t ) matchLength );
 
@@ -459,7 +454,7 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pRemainingTopic,
         else
         {
             status = FleetProvisioningSuccess;
-            *pRemainingTopic += matchLength;
+            *pBufferCursor += matchLength;
             *pRemainingLength -= matchLength;
         }
     }
@@ -468,20 +463,20 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pRemainingTopic,
 }
 /*-----------------------------------------------------------*/
 
-static FleetProvisioningStatus_t consumeTemplateName( const char ** pRemainingTopic,
+static FleetProvisioningStatus_t consumeTemplateName( const char ** pTopicCursor,
                                                       uint16_t * pRemainingLength )
 {
     FleetProvisioningStatus_t ret = FleetProvisioningNoMatch;
     uint16_t i = 0U;
 
-    assert( pRemainingTopic != NULL );
-    assert( *pRemainingTopic != NULL );
+    assert( pTopicCursor != NULL );
+    assert( *pTopicCursor != NULL );
     assert( pRemainingLength != NULL );
 
     /* Find the first forward slash. It marks the end of the template name. */
     for( i = 0U; i < *pRemainingLength; i++ )
     {
-        if( ( *pRemainingTopic )[ i ] == '/' )
+        if( ( *pTopicCursor )[ i ] == '/' )
         {
             break;
         }
@@ -491,7 +486,7 @@ static FleetProvisioningStatus_t consumeTemplateName( const char ** pRemainingTo
     if( i > 0U )
     {
         ret = FleetProvisioningSuccess;
-        *pRemainingTopic += i;
+        *pTopicCursor += i;
         *pRemainingLength -= i;
     }
 
