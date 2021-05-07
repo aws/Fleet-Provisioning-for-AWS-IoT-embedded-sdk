@@ -54,11 +54,11 @@ static uint16_t getRegisterThingTopicLength( uint16_t templateNameLength,
  * The caller is responsible for assuring that there is enough space remaining
  * in the buffer to write the given string.
  *
- * @param[in, out] pRemainingBuffer Pointer to the remaining buffer
+ * @param[in, out] pBufferCursor Pointer to the remaining buffer.
  * @param[in] fragment The piece of the topic string to write.
  * @param[in] length The length of @p fragment.
  */
-static void writeTopicFragmentAndAdvance( char ** pRemainingBuffer,
+static void writeTopicFragmentAndAdvance( char ** pBufferCursor,
                                           const char * fragment,
                                           uint16_t length );
 
@@ -125,19 +125,19 @@ static uint16_t getRegisterThingTopicLength( uint16_t templateNameLength,
 }
 /*-----------------------------------------------------------*/
 
-static void writeTopicFragmentAndAdvance( char ** pRemainingBuffer,
+static void writeTopicFragmentAndAdvance( char ** pBufferCursor,
                                           const char * fragment,
                                           uint16_t length )
 {
-    assert( pRemainingBuffer != NULL );
-    assert( *pRemainingBuffer != NULL );
+    assert( pBufferCursor != NULL );
+    assert( *pBufferCursor != NULL );
     assert( fragment != NULL );
 
-    ( void ) memcpy( ( void * ) *pRemainingBuffer,
+    ( void ) memcpy( ( void * ) *pBufferCursor,
                      ( const void * ) fragment,
                      ( size_t ) length );
 
-    *pRemainingBuffer += length;
+    *pBufferCursor += length;
 }
 /*-----------------------------------------------------------*/
 
