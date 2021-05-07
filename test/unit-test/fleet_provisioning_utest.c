@@ -484,3 +484,417 @@ void test_FleetProvisioning_GetRegisterThingTopic_CborRejectedHappyPath( void )
                                  TEST_TOPIC_BUFFER_WRITABLE_LENGTH - topicLength );
 }
 /*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_BadParams( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    /* NULL topic. */
+    ret = FleetProvisioning_MatchTopic( NULL,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC_LENGTH,
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+
+    /* NULL output parameter. */
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC_LENGTH,
+                                        NULL );
+    TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_InvalidFormat( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( "$aws/cert",
+                                        STRING_LITERAL_LENGTH( "$aws/cert" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/provisioning-templates/TestTemplate/provision/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/provisioning-templates/TestTemplate/provision/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_ZeroLengthTemplateName( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( "$aws/provisioning-templates//provision",
+                                        STRING_LITERAL_LENGTH( "$aws/provisioning-templates//provision" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_RegisterThingMissingSuffix( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( "$aws/provisioning-templates/TestTemplate",
+                                        STRING_LITERAL_LENGTH( "$aws/provisioning-templates/TestTemplate" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_InvalidSuffix( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/json/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/json/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create/json/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create/json/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/provisioning-templates/TestTemplate/provision/json/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/provisioning-templates/TestTemplate/provision/json/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/cbor/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/cbor/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create/cbor/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create/cbor/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/provisioning-templates/TestTemplate/provision/cbor/bad",
+                                        STRING_LITERAL_LENGTH( "$aws/provisioning-templates/TestTemplate/provision/cbor/bad" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_ExtraData( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/json/gibberish",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/json/gibberish" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/json/accepted/gibberish",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/json/accepted/gibberish" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/json/rejected/gibberish",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/json/accepted/gibberish" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/cbor/gibberish",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/json/accepted/gibberish" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/cbor/accepted/gibberish",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/json/accepted/gibberish" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+
+    ret = FleetProvisioning_MatchTopic( "$aws/certificates/create-from-csr/cbor/rejected/gibberish",
+                                        STRING_LITERAL_LENGTH( "$aws/certificates/create-from-csr/json/accepted/gibberish" ),
+                                        &( api ) );
+    TEST_ASSERT_EQUAL( FleetProvisioningNoMatch, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningInvalidTopic, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateCertificateFromCsrPublish, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_ACCEPTED_TOPIC,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_ACCEPTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateCertificateFromCsrAccepted, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_REJECTED_TOPIC,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_REJECTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateCertificateFromCsrRejected, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_PUBLISH_TOPIC,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_PUBLISH_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateCertificateFromCsrPublish, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_ACCEPTED_TOPIC,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_ACCEPTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateCertificateFromCsrAccepted, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_REJECTED_TOPIC,
+                                        TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_REJECTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateCertificateFromCsrRejected, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_PUBLISH_TOPIC,
+                                        TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_PUBLISH_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateKeysAndCertificatePublish, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_ACCEPTED_TOPIC,
+                                        TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_ACCEPTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateKeysAndCertificateAccepted, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_REJECTED_TOPIC,
+                                        TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_REJECTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateKeysAndCertificateRejected, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_PUBLISH_TOPIC,
+                                        TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_PUBLISH_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateKeysAndCertificatePublish, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_ACCEPTED_TOPIC,
+                                        TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_ACCEPTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateKeysAndCertificateAccepted, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_REJECTED_TOPIC,
+                                        TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_REJECTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateKeysAndCertificateRejected, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_RegisterThingJsonPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC,
+                                        TEST_REGISTER_THING_JSON_PUBLISH_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonRegisterThingPublish, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_RegisterThingJsonAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC,
+                                        TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonRegisterThingAccepted, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_RegisterThingJsonRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_JSON_REJECTED_TOPIC,
+                                        TEST_REGISTER_THING_JSON_REJECTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningJsonRegisterThingRejected, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_RegisterThingCborPublishHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC,
+                                        TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborRegisterThingPublish, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_RegisterThingCborAcceptedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC,
+                                        TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborRegisterThingAccepted, api );
+}
+/*-----------------------------------------------------------*/
+
+void test_FleetProvisioning_MatchTopic_RegisterThingCborRejectedHappyPath( void )
+{
+    FleetProvisioningStatus_t ret;
+    FleetProvisioningTopic_t api;
+
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC,
+                                        TEST_REGISTER_THING_CBOR_REJECTED_TOPIC_LENGTH,
+                                        &( api ) );
+
+    TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
+    TEST_ASSERT_EQUAL( FleetProvisioningCborRegisterThingRejected, api );
+}
+/*-----------------------------------------------------------*/

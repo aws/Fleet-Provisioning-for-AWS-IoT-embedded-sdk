@@ -44,10 +44,15 @@ Configuration settings are C pre-processor constants. They can be set with a
 @page fleet_provisioning_functions Functions
 @brief Primary functions of the AWS IoT Fleet Provisioning Client Library:<br><br>
 @subpage fleet_provisioning_getregisterthingtopic_function <br>
+@subpage fleet_provisioning_matchtopic_function <br>
 
 @page fleet_provisioning_getregisterthingtopic_function FleetProvisioning_GetRegisterThingTopic
 @snippet fleet_provisioning.h declare_fleet_provisioning_getregisterthingtopic
 @copydoc FleetProvisioning_GetRegisterThingTopic
+
+@page fleet_provisioning_matchtopic_function FleetProvisioning_MatchTopic
+@snippet fleet_provisioning.h declare_fleet_provisioning_matchtopic
+@copydoc FleetProvisioning_MatchTopic
 */
 
 <!-- We do not use doxygen ALIASes here because there have been issues in the past versions with "^^" newlines within the alias definition. -->
