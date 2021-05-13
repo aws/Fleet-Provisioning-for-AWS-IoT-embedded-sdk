@@ -38,6 +38,12 @@ void harness()
     uint16_t templateNameLength;
     uint16_t * pOutLength;
 
+    __CPROVER_assume( topicBufferLength < CBMC_MAX_OBJECT_SIZE );
+
+    /* +1 is to ensure that we run the function for invalid template name
+     * lengths as well. */
+    __CPROVER_assume( templateNameLength <= ( FLEET_PROVISIONING_TEMPLATENAME_MAX_LENGTH + 1 ) );
+
     pTopicBuffer = malloc( topicBufferLength );
     pTemplateName = malloc( templateNameLength );
     pOutLength = malloc( sizeof( *pOutLength ) );
