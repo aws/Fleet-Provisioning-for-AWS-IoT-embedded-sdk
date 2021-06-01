@@ -36,7 +36,7 @@ library build.
 
 The [fleetprovisioningFilePaths.cmake](fleetprovisioningFilePaths.cmake) file contains the
 information of all source files and the header include paths required to build
-the Device Defender client library.
+the Fleet Provisioning client library.
 
 As mentioned in the previous section, either a custom config file
 (i.e. `fleet_provisioning_config.h`) or `FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG` macro needs to
