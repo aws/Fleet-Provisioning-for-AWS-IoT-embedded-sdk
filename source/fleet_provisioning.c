@@ -576,7 +576,7 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pBufferCursor,
                                                  uint16_t matchLength )
 {
     FleetProvisioningStatus_t status = FleetProvisioningError;
-    int cmpVal = -1;
+    int32_t cmpVal = -1;
 
     assert( pBufferCursor != NULL );
     assert( *pBufferCursor != NULL );
