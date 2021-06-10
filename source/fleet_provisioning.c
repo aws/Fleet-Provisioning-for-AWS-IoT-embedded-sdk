@@ -210,13 +210,13 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pBufferCursor,
  * will fail when we try to match the bridge part.
  *
  * @param[in, out] pTopicCursor Pointer to the remaining topic string.
- * @param[in, out] remainingLength Pointer to the length of the remaining topic string.
+ * @param[in, out] pRemainingLength Pointer to the length of the remaining topic string.
  *
  * @return FleetProvisioningSuccess if a valid template name is skipped over;
  * FleetProvisioningNoMatch otherwise.
  */
 static FleetProvisioningStatus_t consumeTemplateName( const char ** pTopicCursor,
-                                                      uint16_t * remainingLength );
+                                                      uint16_t * pRemainingLength );
 /*-----------------------------------------------------------*/
 
 static uint16_t getRegisterThingTopicLength( uint16_t templateNameLength,
