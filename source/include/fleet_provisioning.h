@@ -62,24 +62,24 @@ typedef enum
 typedef enum
 {
     FleetProvisioningInvalidTopic = 0,
-    FleetProvisioningJsonCreateCertificateFromCsrPublish,
-    FleetProvisioningJsonCreateCertificateFromCsrAccepted,
-    FleetProvisioningJsonCreateCertificateFromCsrRejected,
-    FleetProvisioningJsonCreateKeysAndCertificatePublish,
-    FleetProvisioningJsonCreateKeysAndCertificateAccepted,
-    FleetProvisioningJsonCreateKeysAndCertificateRejected,
-    FleetProvisioningJsonRegisterThingPublish,
-    FleetProvisioningJsonRegisterThingAccepted,
-    FleetProvisioningJsonRegisterThingRejected,
-    FleetProvisioningCborCreateCertificateFromCsrPublish,
-    FleetProvisioningCborCreateCertificateFromCsrAccepted,
-    FleetProvisioningCborCreateCertificateFromCsrRejected,
-    FleetProvisioningCborCreateKeysAndCertificatePublish,
-    FleetProvisioningCborCreateKeysAndCertificateAccepted,
-    FleetProvisioningCborCreateKeysAndCertificateRejected,
-    FleetProvisioningCborRegisterThingPublish,
-    FleetProvisioningCborRegisterThingAccepted,
-    FleetProvisioningCborRegisterThingRejected
+    FleetProvJsonCreateCertFromCsrPublish,
+    FleetProvJsonCreateCertFromCsrAccepted,
+    FleetProvJsonCreateCertFromCsrRejected,
+    FleetProvJsonCreateKeysAndCertPublish,
+    FleetProvJsonCreateKeysAndCertAccepted,
+    FleetProvJsonCreateKeysAndCertRejected,
+    FleetProvJsonRegisterThingPublish,
+    FleetProvJsonRegisterThingAccepted,
+    FleetProvJsonRegisterThingRejected,
+    FleetProvCborCreateCertFromCsrPublish,
+    FleetProvCborCreateCertFromCsrAccepted,
+    FleetProvCborCreateCertFromCsrRejected,
+    FleetProvCborCreateKeysAndCertPublish,
+    FleetProvCborCreateKeysAndCertAccepted,
+    FleetProvCborCreateKeysAndCertRejected,
+    FleetProvCborRegisterThingPublish,
+    FleetProvCborRegisterThingAccepted,
+    FleetProvCborRegisterThingRejected
 } FleetProvisioningTopic_t;
 
 /**
@@ -608,14 +608,14 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
  *
  * if( status == FleetProvisioningSuccess )
  * {
- *      if( api == FleetProvisioningJsonCreateCertificateFromCsrAccepted )
+ *      if( api == FleetProvJsonCreateCertFromCsrAccepted )
  *      {
  *          // The published JSON request was accepted and completed by the AWS
  *          // IoT Fleet Provisioning service. You can parse the response using
  *          // your choice of JSON parser get the certificate, ID, and ownership
  *          // token.
  *      }
- *      else if( api == FleetProvisioningJsonCreateCertificateFromCsrRejected )
+ *      else if( api == FleetProvJsonCreateCertFromCsrRejected )
  *      {
  *          // The published JSON request was rejected by the AWS IoT Fleet
  *          // Provisioning service.

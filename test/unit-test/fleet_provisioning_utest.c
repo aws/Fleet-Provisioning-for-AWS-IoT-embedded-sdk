@@ -657,7 +657,7 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonPublishHappyP
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateCertificateFromCsrPublish, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonCreateCertFromCsrPublish, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -671,7 +671,7 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonAcceptedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateCertificateFromCsrAccepted, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonCreateCertFromCsrAccepted, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -685,7 +685,7 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonRejectedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateCertificateFromCsrRejected, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonCreateCertFromCsrRejected, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -699,7 +699,7 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborPublishHappyP
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateCertificateFromCsrPublish, api );
+    TEST_ASSERT_EQUAL( FleetProvCborCreateCertFromCsrPublish, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -713,7 +713,7 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborAcceptedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateCertificateFromCsrAccepted, api );
+    TEST_ASSERT_EQUAL( FleetProvCborCreateCertFromCsrAccepted, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -727,7 +727,7 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborRejectedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateCertificateFromCsrRejected, api );
+    TEST_ASSERT_EQUAL( FleetProvCborCreateCertFromCsrRejected, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -741,7 +741,7 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonPublishHappyP
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateKeysAndCertificatePublish, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonCreateKeysAndCertPublish, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -755,7 +755,7 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonAcceptedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateKeysAndCertificateAccepted, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonCreateKeysAndCertAccepted, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -769,7 +769,7 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonRejectedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonCreateKeysAndCertificateRejected, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonCreateKeysAndCertRejected, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -783,7 +783,7 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborPublishHappyP
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateKeysAndCertificatePublish, api );
+    TEST_ASSERT_EQUAL( FleetProvCborCreateKeysAndCertPublish, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -797,7 +797,7 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborAcceptedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateKeysAndCertificateAccepted, api );
+    TEST_ASSERT_EQUAL( FleetProvCborCreateKeysAndCertAccepted, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -811,7 +811,7 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborRejectedHappy
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborCreateKeysAndCertificateRejected, api );
+    TEST_ASSERT_EQUAL( FleetProvCborCreateKeysAndCertRejected, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -825,7 +825,7 @@ void test_FleetProvisioning_MatchTopic_RegisterThingJsonPublishHappyPath( void )
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonRegisterThingPublish, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonRegisterThingPublish, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -839,7 +839,7 @@ void test_FleetProvisioning_MatchTopic_RegisterThingJsonAcceptedHappyPath( void 
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonRegisterThingAccepted, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonRegisterThingAccepted, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -853,7 +853,7 @@ void test_FleetProvisioning_MatchTopic_RegisterThingJsonRejectedHappyPath( void 
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningJsonRegisterThingRejected, api );
+    TEST_ASSERT_EQUAL( FleetProvJsonRegisterThingRejected, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -867,7 +867,7 @@ void test_FleetProvisioning_MatchTopic_RegisterThingCborPublishHappyPath( void )
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborRegisterThingPublish, api );
+    TEST_ASSERT_EQUAL( FleetProvCborRegisterThingPublish, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -881,7 +881,7 @@ void test_FleetProvisioning_MatchTopic_RegisterThingCborAcceptedHappyPath( void 
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborRegisterThingAccepted, api );
+    TEST_ASSERT_EQUAL( FleetProvCborRegisterThingAccepted, api );
 }
 /*-----------------------------------------------------------*/
 
@@ -895,6 +895,6 @@ void test_FleetProvisioning_MatchTopic_RegisterThingCborRejectedHappyPath( void 
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( FleetProvisioningCborRegisterThingRejected, api );
+    TEST_ASSERT_EQUAL( FleetProvCborRegisterThingRejected, api );
 }
 /*-----------------------------------------------------------*/

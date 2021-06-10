@@ -439,12 +439,12 @@ static FleetProvisioningTopic_t parseCreateCertificateFromCsrTopic( const char *
     /* Table of topics in the same order as TopicFormatSuffix_t. */
     static const FleetProvisioningTopic_t createCertificateFromCsrApi[] =
     {
-        FleetProvisioningJsonCreateCertificateFromCsrPublish,
-        FleetProvisioningJsonCreateCertificateFromCsrAccepted,
-        FleetProvisioningJsonCreateCertificateFromCsrRejected,
-        FleetProvisioningCborCreateCertificateFromCsrPublish,
-        FleetProvisioningCborCreateCertificateFromCsrAccepted,
-        FleetProvisioningCborCreateCertificateFromCsrRejected,
+        FleetProvJsonCreateCertFromCsrPublish,
+        FleetProvJsonCreateCertFromCsrAccepted,
+        FleetProvJsonCreateCertFromCsrRejected,
+        FleetProvCborCreateCertFromCsrPublish,
+        FleetProvCborCreateCertFromCsrAccepted,
+        FleetProvCborCreateCertFromCsrRejected,
         FleetProvisioningInvalidTopic
     };
     FleetProvisioningTopic_t ret = FleetProvisioningInvalidTopic;
@@ -478,12 +478,12 @@ static FleetProvisioningTopic_t parseCreateKeysAndCertificateTopic( const char *
     /* Table of topics in the same order as TopicFormatSuffix_t. */
     static const FleetProvisioningTopic_t createKeysAndCertificateApi[] =
     {
-        FleetProvisioningJsonCreateKeysAndCertificatePublish,
-        FleetProvisioningJsonCreateKeysAndCertificateAccepted,
-        FleetProvisioningJsonCreateKeysAndCertificateRejected,
-        FleetProvisioningCborCreateKeysAndCertificatePublish,
-        FleetProvisioningCborCreateKeysAndCertificateAccepted,
-        FleetProvisioningCborCreateKeysAndCertificateRejected,
+        FleetProvJsonCreateKeysAndCertPublish,
+        FleetProvJsonCreateKeysAndCertAccepted,
+        FleetProvJsonCreateKeysAndCertRejected,
+        FleetProvCborCreateKeysAndCertPublish,
+        FleetProvCborCreateKeysAndCertAccepted,
+        FleetProvCborCreateKeysAndCertRejected,
         FleetProvisioningInvalidTopic
     };
     FleetProvisioningTopic_t ret = FleetProvisioningInvalidTopic;
@@ -517,12 +517,12 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
     /* Table of topics in the same order as TopicFormatSuffix_t. */
     static const FleetProvisioningTopic_t registerThingApi[] =
     {
-        FleetProvisioningJsonRegisterThingPublish,
-        FleetProvisioningJsonRegisterThingAccepted,
-        FleetProvisioningJsonRegisterThingRejected,
-        FleetProvisioningCborRegisterThingPublish,
-        FleetProvisioningCborRegisterThingAccepted,
-        FleetProvisioningCborRegisterThingRejected,
+        FleetProvJsonRegisterThingPublish,
+        FleetProvJsonRegisterThingAccepted,
+        FleetProvJsonRegisterThingRejected,
+        FleetProvCborRegisterThingPublish,
+        FleetProvCborRegisterThingAccepted,
+        FleetProvCborRegisterThingRejected,
         FleetProvisioningInvalidTopic
     };
     FleetProvisioningTopic_t ret = FleetProvisioningInvalidTopic;
