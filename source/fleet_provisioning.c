@@ -103,12 +103,12 @@ static void writeTopicFragmentAndAdvance( char ** pBufferCursor,
  * @return FleetProvisioningSuccess if no errors are found with the parameters;
  * FleetProvisioningBadParameter otherwise.
  */
-static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pTopicBuffer,
+static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( const char * pTopicBuffer,
                                                                    FleetProvisioningFormat_t format,
                                                                    FleetProvisioningApiTopics_t topic,
                                                                    const char * pTemplateName,
                                                                    uint16_t templateNameLength,
-                                                                   uint16_t * pOutLength );
+                                                                   const uint16_t * pOutLength );
 
 /**
  * @brief Match the suffix from the remaining topic string and return the
@@ -274,12 +274,12 @@ static void writeTopicFragmentAndAdvance( char ** pBufferCursor,
 }
 /*-----------------------------------------------------------*/
 
-static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( char * pTopicBuffer,
+static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( const char * pTopicBuffer,
                                                                    FleetProvisioningFormat_t format,
                                                                    FleetProvisioningApiTopics_t topic,
                                                                    const char * pTemplateName,
                                                                    uint16_t templateNameLength,
-                                                                   uint16_t * pOutLength )
+                                                                   const uint16_t * pOutLength )
 {
     FleetProvisioningStatus_t ret = FleetProvisioningError;
 
