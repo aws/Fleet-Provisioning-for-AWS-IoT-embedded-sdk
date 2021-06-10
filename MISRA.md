@@ -15,6 +15,7 @@ Deviations from the MISRA standard are listed below:
 ### Flagged by Coverity
 | Deviation | Category | Justification |
 | :-: | :-: | :-: |
+| Rule 8.6 | Advisory | API functions are not used by the library outside of the files they are defined; however, they must be externally visible in order to be used by an application. |
 
 ### Suppressed with Coverity Comments
 *None.*
