@@ -325,7 +325,7 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
     assert( pRemainingTopic != NULL );
 
     /* Check if publish topic */
-    if( cursorLength == 0 )
+    if( cursorLength == 0U )
     {
         ret = TopicPublish;
         status = FleetProvisioningSuccess;
@@ -341,7 +341,7 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
 
         if( status == FleetProvisioningSuccess )
         {
-            if( cursorLength == 0 )
+            if( cursorLength == 0U )
             {
                 ret = TopicAccepted;
             }
@@ -362,7 +362,7 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
 
         if( status == FleetProvisioningSuccess )
         {
-            if( cursorLength == 0 )
+            if( cursorLength == 0U )
             {
                 ret = TopicRejected;
             }
