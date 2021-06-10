@@ -366,10 +366,6 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
             {
                 ret = TopicRejected;
             }
-            else
-            {
-                status = FleetProvisioningError;
-            }
         }
     }
 
