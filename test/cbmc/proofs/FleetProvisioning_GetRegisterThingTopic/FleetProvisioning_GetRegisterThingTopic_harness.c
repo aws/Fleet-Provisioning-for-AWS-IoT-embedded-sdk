@@ -42,7 +42,7 @@ void harness()
 
     /* +1 is to ensure that we run the function for invalid template name
      * lengths as well. */
-    __CPROVER_assume( templateNameLength <= ( FLEET_PROVISIONING_TEMPLATENAME_MAX_LENGTH + 1 ) );
+    __CPROVER_assume( templateNameLength <= ( FP_TEMPLATENAME_MAX_LENGTH + 1 ) );
 
     pTopicBuffer = malloc( topicBufferLength );
     pTemplateName = malloc( templateNameLength );

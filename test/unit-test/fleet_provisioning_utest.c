@@ -38,63 +38,63 @@
 #define STRING_LITERAL_LENGTH( literal )    ( ( uint16_t ) ( sizeof( literal ) - 1U ) )
 
 /* Template name used in the tests. */
-#define TEST_TEMPLATE_NAME                                             "TestTemplateName"
-#define TEST_TEMPLATE_NAME_LENGTH                                      STRING_LITERAL_LENGTH( TEST_TEMPLATE_NAME )
+#define TEST_TEMPLATE_NAME                       "TestTemplateName"
+#define TEST_TEMPLATE_NAME_LENGTH                STRING_LITERAL_LENGTH( TEST_TEMPLATE_NAME )
 
 /* Topics used in the tests. */
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC            "$aws/certificates/create-from-csr/json"
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC )
+#define TEST_CREATE_CERT_JSON_PUBLISH_TOPIC      "$aws/certificates/create-from-csr/json"
+#define TEST_CREATE_CERT_JSON_PUBLISH_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_CERT_JSON_PUBLISH_TOPIC )
 
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_ACCEPTED_TOPIC           "$aws/certificates/create-from-csr/json/accepted"
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_ACCEPTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_ACCEPTED_TOPIC )
+#define TEST_CREATE_CERT_JSON_ACCEPTED_TOPIC     "$aws/certificates/create-from-csr/json/accepted"
+#define TEST_CREATE_CERT_JSON_ACCEPTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERT_JSON_ACCEPTED_TOPIC )
 
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_REJECTED_TOPIC           "$aws/certificates/create-from-csr/json/rejected"
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_REJECTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_REJECTED_TOPIC )
+#define TEST_CREATE_CERT_JSON_REJECTED_TOPIC     "$aws/certificates/create-from-csr/json/rejected"
+#define TEST_CREATE_CERT_JSON_REJECTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERT_JSON_REJECTED_TOPIC )
 
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_PUBLISH_TOPIC            "$aws/certificates/create-from-csr/cbor"
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_PUBLISH_TOPIC_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_PUBLISH_TOPIC )
+#define TEST_CREATE_CERT_CBOR_PUBLISH_TOPIC      "$aws/certificates/create-from-csr/cbor"
+#define TEST_CREATE_CERT_CBOR_PUBLISH_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_CERT_CBOR_PUBLISH_TOPIC )
 
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_ACCEPTED_TOPIC           "$aws/certificates/create-from-csr/cbor/accepted"
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_ACCEPTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_ACCEPTED_TOPIC )
+#define TEST_CREATE_CERT_CBOR_ACCEPTED_TOPIC     "$aws/certificates/create-from-csr/cbor/accepted"
+#define TEST_CREATE_CERT_CBOR_ACCEPTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERT_CBOR_ACCEPTED_TOPIC )
 
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_REJECTED_TOPIC           "$aws/certificates/create-from-csr/cbor/rejected"
-#define TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_REJECTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_REJECTED_TOPIC )
+#define TEST_CREATE_CERT_CBOR_REJECTED_TOPIC     "$aws/certificates/create-from-csr/cbor/rejected"
+#define TEST_CREATE_CERT_CBOR_REJECTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_CERT_CBOR_REJECTED_TOPIC )
 
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_PUBLISH_TOPIC            "$aws/certificates/create/json"
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_PUBLISH_TOPIC_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_PUBLISH_TOPIC )
+#define TEST_CREATE_KEYS_JSON_PUBLISH_TOPIC      "$aws/certificates/create/json"
+#define TEST_CREATE_KEYS_JSON_PUBLISH_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_JSON_PUBLISH_TOPIC )
 
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_ACCEPTED_TOPIC           "$aws/certificates/create/json/accepted"
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_ACCEPTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_ACCEPTED_TOPIC )
+#define TEST_CREATE_KEYS_JSON_ACCEPTED_TOPIC     "$aws/certificates/create/json/accepted"
+#define TEST_CREATE_KEYS_JSON_ACCEPTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_JSON_ACCEPTED_TOPIC )
 
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_REJECTED_TOPIC           "$aws/certificates/create/json/rejected"
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_REJECTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_REJECTED_TOPIC )
+#define TEST_CREATE_KEYS_JSON_REJECTED_TOPIC     "$aws/certificates/create/json/rejected"
+#define TEST_CREATE_KEYS_JSON_REJECTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_JSON_REJECTED_TOPIC )
 
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_PUBLISH_TOPIC            "$aws/certificates/create/cbor"
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_PUBLISH_TOPIC_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_PUBLISH_TOPIC )
+#define TEST_CREATE_KEYS_CBOR_PUBLISH_TOPIC      "$aws/certificates/create/cbor"
+#define TEST_CREATE_KEYS_CBOR_PUBLISH_LENGTH     STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_CBOR_PUBLISH_TOPIC )
 
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_ACCEPTED_TOPIC           "$aws/certificates/create/cbor/accepted"
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_ACCEPTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_ACCEPTED_TOPIC )
+#define TEST_CREATE_KEYS_CBOR_ACCEPTED_TOPIC     "$aws/certificates/create/cbor/accepted"
+#define TEST_CREATE_KEYS_CBOR_ACCEPTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_CBOR_ACCEPTED_TOPIC )
 
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_REJECTED_TOPIC           "$aws/certificates/create/cbor/rejected"
-#define TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_REJECTED_TOPIC_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_REJECTED_TOPIC )
+#define TEST_CREATE_KEYS_CBOR_REJECTED_TOPIC     "$aws/certificates/create/cbor/rejected"
+#define TEST_CREATE_KEYS_CBOR_REJECTED_LENGTH    STRING_LITERAL_LENGTH( TEST_CREATE_KEYS_CBOR_REJECTED_TOPIC )
 
-#define TEST_REGISTER_THING_JSON_PUBLISH_TOPIC                         "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/json"
-#define TEST_REGISTER_THING_JSON_PUBLISH_TOPIC_LENGTH                  STRING_LITERAL_LENGTH( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC )
+#define TEST_REGISTER_JSON_PUBLISH_TOPIC         "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/json"
+#define TEST_REGISTER_JSON_PUBLISH_LENGTH        STRING_LITERAL_LENGTH( TEST_REGISTER_JSON_PUBLISH_TOPIC )
 
-#define TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC                        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/json/accepted"
-#define TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC_LENGTH                 STRING_LITERAL_LENGTH( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC )
+#define TEST_REGISTER_JSON_ACCEPTED_TOPIC        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/json/accepted"
+#define TEST_REGISTER_JSON_ACCEPTED_LENGTH       STRING_LITERAL_LENGTH( TEST_REGISTER_JSON_ACCEPTED_TOPIC )
 
-#define TEST_REGISTER_THING_JSON_REJECTED_TOPIC                        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/json/rejected"
-#define TEST_REGISTER_THING_JSON_REJECTED_TOPIC_LENGTH                 STRING_LITERAL_LENGTH( TEST_REGISTER_THING_JSON_REJECTED_TOPIC )
+#define TEST_REGISTER_JSON_REJECTED_TOPIC        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/json/rejected"
+#define TEST_REGISTER_JSON_REJECTED_LENGTH       STRING_LITERAL_LENGTH( TEST_REGISTER_JSON_REJECTED_TOPIC )
 
-#define TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC                         "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/cbor"
-#define TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC_LENGTH                  STRING_LITERAL_LENGTH( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC )
+#define TEST_REGISTER_CBOR_PUBLISH_TOPIC         "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/cbor"
+#define TEST_REGISTER_CBOR_PUBLISH_LENGTH        STRING_LITERAL_LENGTH( TEST_REGISTER_CBOR_PUBLISH_TOPIC )
 
-#define TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC                        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/cbor/accepted"
-#define TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC_LENGTH                 STRING_LITERAL_LENGTH( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC )
+#define TEST_REGISTER_CBOR_ACCEPTED_TOPIC        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/cbor/accepted"
+#define TEST_REGISTER_CBOR_ACCEPTED_LENGTH       STRING_LITERAL_LENGTH( TEST_REGISTER_CBOR_ACCEPTED_TOPIC )
 
-#define TEST_REGISTER_THING_CBOR_REJECTED_TOPIC                        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/cbor/rejected"
-#define TEST_REGISTER_THING_CBOR_REJECTED_TOPIC_LENGTH                 STRING_LITERAL_LENGTH( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC )
+#define TEST_REGISTER_CBOR_REJECTED_TOPIC        "$aws/provisioning-templates/" TEST_TEMPLATE_NAME "/provision/cbor/rejected"
+#define TEST_REGISTER_CBOR_REJECTED_LENGTH       STRING_LITERAL_LENGTH( TEST_REGISTER_CBOR_REJECTED_TOPIC )
 
 /* Length of the topic buffer used in tests. Guard buffers are placed before and
  * after the topic buffer to verify that Fleet Provisioning APIs do not write
@@ -107,9 +107,9 @@
  * Both guard buffers are filled with a known pattern before each test and are
  * verified to remain unchanged after each test.
  */
-#define TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH                          32
-#define TEST_TOPIC_BUFFER_WRITABLE_LENGTH                              256
-#define TEST_TOPIC_BUFFER_SUFFIX_GUARD_LENGTH                          32
+#define TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH    32
+#define TEST_TOPIC_BUFFER_WRITABLE_LENGTH        256
+#define TEST_TOPIC_BUFFER_SUFFIX_GUARD_LENGTH    32
 #define TEST_TOPIC_BUFFER_TOTAL_LENGTH        \
     ( TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH + \
       TEST_TOPIC_BUFFER_WRITABLE_LENGTH +     \
@@ -161,29 +161,29 @@ int suiteTearDown( int numFailures )
  */
 void test_RegisterThing_MacrosString( void )
 {
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC,
-                                  FLEET_PROVISIONING_JSON_REGISTER_THING_PUBLISH_TOPIC( TEST_TEMPLATE_NAME ),
-                                  TEST_REGISTER_THING_JSON_PUBLISH_TOPIC_LENGTH );
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_JSON_PUBLISH_TOPIC,
+                                  FP_JSON_REGISTER_PUBLISH_TOPIC( TEST_TEMPLATE_NAME ),
+                                  TEST_REGISTER_JSON_PUBLISH_LENGTH );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC,
-                                  FLEET_PROVISIONING_JSON_REGISTER_THING_ACCEPTED_TOPIC( TEST_TEMPLATE_NAME ),
-                                  TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC_LENGTH );
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_JSON_ACCEPTED_TOPIC,
+                                  FP_JSON_REGISTER_ACCEPTED_TOPIC( TEST_TEMPLATE_NAME ),
+                                  TEST_REGISTER_JSON_ACCEPTED_LENGTH );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_REJECTED_TOPIC,
-                                  FLEET_PROVISIONING_JSON_REGISTER_THING_REJECTED_TOPIC( TEST_TEMPLATE_NAME ),
-                                  TEST_REGISTER_THING_JSON_REJECTED_TOPIC_LENGTH );
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_JSON_REJECTED_TOPIC,
+                                  FP_JSON_REGISTER_REJECTED_TOPIC( TEST_TEMPLATE_NAME ),
+                                  TEST_REGISTER_JSON_REJECTED_LENGTH );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC,
-                                  FLEET_PROVISIONING_CBOR_REGISTER_THING_PUBLISH_TOPIC( TEST_TEMPLATE_NAME ),
-                                  TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC_LENGTH );
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_CBOR_PUBLISH_TOPIC,
+                                  FP_CBOR_REGISTER_PUBLISH_TOPIC( TEST_TEMPLATE_NAME ),
+                                  TEST_REGISTER_CBOR_PUBLISH_LENGTH );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC,
-                                  FLEET_PROVISIONING_CBOR_REGISTER_THING_ACCEPTED_TOPIC( TEST_TEMPLATE_NAME ),
-                                  TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC_LENGTH );
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_CBOR_ACCEPTED_TOPIC,
+                                  FP_CBOR_REGISTER_ACCEPTED_TOPIC( TEST_TEMPLATE_NAME ),
+                                  TEST_REGISTER_CBOR_ACCEPTED_LENGTH );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC,
-                                  FLEET_PROVISIONING_CBOR_REGISTER_THING_REJECTED_TOPIC( TEST_TEMPLATE_NAME ),
-                                  TEST_REGISTER_THING_CBOR_REJECTED_TOPIC_LENGTH );
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_CBOR_REJECTED_TOPIC,
+                                  FP_CBOR_REGISTER_REJECTED_TOPIC( TEST_TEMPLATE_NAME ),
+                                  TEST_REGISTER_CBOR_REJECTED_LENGTH );
 }
 /*-----------------------------------------------------------*/
 
@@ -192,23 +192,23 @@ void test_RegisterThing_MacrosString( void )
  */
 void test_RegisterThing_MacrosLength( void )
 {
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC_LENGTH,
-                       FLEET_PROVISIONING_JSON_REGISTER_THING_PUBLISH_TOPIC_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_JSON_PUBLISH_LENGTH,
+                       FP_JSON_REGISTER_PUBLISH_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
 
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC_LENGTH,
-                       FLEET_PROVISIONING_JSON_REGISTER_THING_ACCEPTED_TOPIC_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_JSON_ACCEPTED_LENGTH,
+                       FP_JSON_REGISTER_ACCEPTED_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
 
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_REJECTED_TOPIC_LENGTH,
-                       FLEET_PROVISIONING_JSON_REGISTER_THING_REJECTED_TOPIC_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_JSON_REJECTED_LENGTH,
+                       FP_JSON_REGISTER_REJECTED_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
 
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC_LENGTH,
-                       FLEET_PROVISIONING_CBOR_REGISTER_THING_PUBLISH_TOPIC_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_CBOR_PUBLISH_LENGTH,
+                       FP_CBOR_REGISTER_PUBLISH_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
 
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC_LENGTH,
-                       FLEET_PROVISIONING_CBOR_REGISTER_THING_ACCEPTED_TOPIC_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_CBOR_ACCEPTED_LENGTH,
+                       FP_CBOR_REGISTER_ACCEPTED_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
 
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC_LENGTH,
-                       FLEET_PROVISIONING_CBOR_REGISTER_THING_REJECTED_TOPIC_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_CBOR_REJECTED_LENGTH,
+                       FP_CBOR_REGISTER_REJECTED_LENGTH( TEST_TEMPLATE_NAME_LENGTH ) );
 }
 /*-----------------------------------------------------------*/
 
@@ -288,7 +288,7 @@ void test_FleetProvisioning_GetRegisterThingTopic_BadParams( void )
                                                    FleetProvisioningJson,
                                                    FleetProvisioningPublish,
                                                    TEST_TEMPLATE_NAME,
-                                                   FLEET_PROVISIONING_TEMPLATENAME_MAX_LENGTH + 1,
+                                                   FP_TEMPLATENAME_MAX_LENGTH + 1,
                                                    &( topicLength ) );
     TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
     TEST_ASSERT_EACH_EQUAL_HEX8( 0xA5,
@@ -343,9 +343,9 @@ void test_FleetProvisioning_GetRegisterThingTopic_JsonPublishHappyPath( void )
                                                    &( topicLength ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC_LENGTH, topicLength );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_JSON_PUBLISH_LENGTH, topicLength );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC,
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_JSON_PUBLISH_TOPIC,
                                   &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                   topicLength );
 
@@ -369,9 +369,9 @@ void test_FleetProvisioning_GetRegisterThingTopic_JsonAcceptedHappyPath( void )
                                                    &( topicLength ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC_LENGTH, topicLength );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_JSON_ACCEPTED_LENGTH, topicLength );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC,
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_JSON_ACCEPTED_TOPIC,
                                   &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                   topicLength );
 
@@ -395,9 +395,9 @@ void test_FleetProvisioning_GetRegisterThingTopic_JsonRejectedHappyPath( void )
                                                    &( topicLength ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_JSON_REJECTED_TOPIC_LENGTH, topicLength );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_JSON_REJECTED_LENGTH, topicLength );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_JSON_REJECTED_TOPIC,
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_JSON_REJECTED_TOPIC,
                                   &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                   topicLength );
 
@@ -421,9 +421,9 @@ void test_FleetProvisioning_GetRegisterThingTopic_CborPublishHappyPath( void )
                                                    &( topicLength ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC_LENGTH, topicLength );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_CBOR_PUBLISH_LENGTH, topicLength );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC,
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_CBOR_PUBLISH_TOPIC,
                                   &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                   topicLength );
 
@@ -447,9 +447,9 @@ void test_FleetProvisioning_GetRegisterThingTopic_CborAcceptedHappyPath( void )
                                                    &( topicLength ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC_LENGTH, topicLength );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_CBOR_ACCEPTED_LENGTH, topicLength );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC,
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_CBOR_ACCEPTED_TOPIC,
                                   &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                   topicLength );
 
@@ -473,9 +473,9 @@ void test_FleetProvisioning_GetRegisterThingTopic_CborRejectedHappyPath( void )
                                                    &( topicLength ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
-    TEST_ASSERT_EQUAL( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC_LENGTH, topicLength );
+    TEST_ASSERT_EQUAL( TEST_REGISTER_CBOR_REJECTED_LENGTH, topicLength );
 
-    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC,
+    TEST_ASSERT_EQUAL_STRING_LEN( TEST_REGISTER_CBOR_REJECTED_TOPIC,
                                   &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                   topicLength );
 
@@ -492,13 +492,13 @@ void test_FleetProvisioning_MatchTopic_BadParams( void )
 
     /* NULL topic. */
     ret = FleetProvisioning_MatchTopic( NULL,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC_LENGTH,
+                                        TEST_CREATE_CERT_JSON_PUBLISH_LENGTH,
                                         &( api ) );
     TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
 
     /* NULL output parameter. */
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERT_JSON_PUBLISH_TOPIC,
+                                        TEST_CREATE_CERT_JSON_PUBLISH_LENGTH,
                                         NULL );
     TEST_ASSERT_EQUAL( FleetProvisioningBadParameter, ret );
 }
@@ -652,8 +652,8 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonPublishHappyP
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_PUBLISH_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERT_JSON_PUBLISH_TOPIC,
+                                        TEST_CREATE_CERT_JSON_PUBLISH_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -666,8 +666,8 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonAcceptedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_ACCEPTED_TOPIC,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_ACCEPTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERT_JSON_ACCEPTED_TOPIC,
+                                        TEST_CREATE_CERT_JSON_ACCEPTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -680,8 +680,8 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonRejectedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_REJECTED_TOPIC,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_JSON_REJECTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERT_JSON_REJECTED_TOPIC,
+                                        TEST_CREATE_CERT_JSON_REJECTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -694,8 +694,8 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborPublishHappyP
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_PUBLISH_TOPIC,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_PUBLISH_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERT_CBOR_PUBLISH_TOPIC,
+                                        TEST_CREATE_CERT_CBOR_PUBLISH_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -708,8 +708,8 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborAcceptedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_ACCEPTED_TOPIC,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_ACCEPTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERT_CBOR_ACCEPTED_TOPIC,
+                                        TEST_CREATE_CERT_CBOR_ACCEPTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -722,8 +722,8 @@ void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborRejectedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_REJECTED_TOPIC,
-                                        TEST_CREATE_CERTIFICATE_FROM_CSR_CBOR_REJECTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_CERT_CBOR_REJECTED_TOPIC,
+                                        TEST_CREATE_CERT_CBOR_REJECTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -736,8 +736,8 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonPublishHappyP
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_PUBLISH_TOPIC,
-                                        TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_PUBLISH_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_JSON_PUBLISH_TOPIC,
+                                        TEST_CREATE_KEYS_JSON_PUBLISH_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -750,8 +750,8 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonAcceptedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_ACCEPTED_TOPIC,
-                                        TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_ACCEPTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_JSON_ACCEPTED_TOPIC,
+                                        TEST_CREATE_KEYS_JSON_ACCEPTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -764,8 +764,8 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonRejectedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_REJECTED_TOPIC,
-                                        TEST_CREATE_KEYS_AND_CERTIFICATE_JSON_REJECTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_JSON_REJECTED_TOPIC,
+                                        TEST_CREATE_KEYS_JSON_REJECTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -778,8 +778,8 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborPublishHappyP
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_PUBLISH_TOPIC,
-                                        TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_PUBLISH_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_CBOR_PUBLISH_TOPIC,
+                                        TEST_CREATE_KEYS_CBOR_PUBLISH_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -792,8 +792,8 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborAcceptedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_ACCEPTED_TOPIC,
-                                        TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_ACCEPTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_CBOR_ACCEPTED_TOPIC,
+                                        TEST_CREATE_KEYS_CBOR_ACCEPTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -806,8 +806,8 @@ void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborRejectedHappy
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_REJECTED_TOPIC,
-                                        TEST_CREATE_KEYS_AND_CERTIFICATE_CBOR_REJECTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_CREATE_KEYS_CBOR_REJECTED_TOPIC,
+                                        TEST_CREATE_KEYS_CBOR_REJECTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -820,8 +820,8 @@ void test_FleetProvisioning_MatchTopic_RegisterThingJsonPublishHappyPath( void )
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_JSON_PUBLISH_TOPIC,
-                                        TEST_REGISTER_THING_JSON_PUBLISH_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_JSON_PUBLISH_TOPIC,
+                                        TEST_REGISTER_JSON_PUBLISH_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -834,8 +834,8 @@ void test_FleetProvisioning_MatchTopic_RegisterThingJsonAcceptedHappyPath( void 
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC,
-                                        TEST_REGISTER_THING_JSON_ACCEPTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_JSON_ACCEPTED_TOPIC,
+                                        TEST_REGISTER_JSON_ACCEPTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -848,8 +848,8 @@ void test_FleetProvisioning_MatchTopic_RegisterThingJsonRejectedHappyPath( void 
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_JSON_REJECTED_TOPIC,
-                                        TEST_REGISTER_THING_JSON_REJECTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_JSON_REJECTED_TOPIC,
+                                        TEST_REGISTER_JSON_REJECTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -862,8 +862,8 @@ void test_FleetProvisioning_MatchTopic_RegisterThingCborPublishHappyPath( void )
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC,
-                                        TEST_REGISTER_THING_CBOR_PUBLISH_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_CBOR_PUBLISH_TOPIC,
+                                        TEST_REGISTER_CBOR_PUBLISH_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -876,8 +876,8 @@ void test_FleetProvisioning_MatchTopic_RegisterThingCborAcceptedHappyPath( void 
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC,
-                                        TEST_REGISTER_THING_CBOR_ACCEPTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_CBOR_ACCEPTED_TOPIC,
+                                        TEST_REGISTER_CBOR_ACCEPTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );
@@ -890,8 +890,8 @@ void test_FleetProvisioning_MatchTopic_RegisterThingCborRejectedHappyPath( void 
     FleetProvisioningStatus_t ret;
     FleetProvisioningTopic_t api;
 
-    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_THING_CBOR_REJECTED_TOPIC,
-                                        TEST_REGISTER_THING_CBOR_REJECTED_TOPIC_LENGTH,
+    ret = FleetProvisioning_MatchTopic( TEST_REGISTER_CBOR_REJECTED_TOPIC,
+                                        TEST_REGISTER_CBOR_REJECTED_LENGTH,
                                         &( api ) );
 
     TEST_ASSERT_EQUAL( FleetProvisioningSuccess, ret );

@@ -226,32 +226,32 @@ static uint16_t getRegisterThingTopicLength( uint16_t templateNameLength,
     uint16_t topicLength = 0U;
 
     assert( ( templateNameLength != 0U ) &&
-            ( templateNameLength <= FLEET_PROVISIONING_TEMPLATENAME_MAX_LENGTH ) );
+            ( templateNameLength <= FP_TEMPLATENAME_MAX_LENGTH ) );
     assert( ( format == FleetProvisioningJson ) || ( format == FleetProvisioningCbor ) );
     assert( ( topic >= FleetProvisioningPublish ) && ( topic <= FleetProvisioningRejected ) );
 
-    topicLength = FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +
+    topicLength = FP_REGISTER_API_LENGTH_PREFIX +
                   templateNameLength +
-                  FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE;
+                  FP_REGISTER_API_LENGTH_BRIDGE;
 
     if( format == FleetProvisioningJson )
     {
-        topicLength += FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT;
+        topicLength += FP_API_LENGTH_JSON_FORMAT;
     }
 
     if( format == FleetProvisioningCbor )
     {
-        topicLength += FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT;
+        topicLength += FP_API_LENGTH_CBOR_FORMAT;
     }
 
     if( topic == FleetProvisioningAccepted )
     {
-        topicLength += FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX;
+        topicLength += FP_API_LENGTH_ACCEPTED_SUFFIX;
     }
 
     if( topic == FleetProvisioningRejected )
     {
-        topicLength += FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX;
+        topicLength += FP_API_LENGTH_REJECTED_SUFFIX;
     }
 
     return topicLength;
@@ -290,7 +290,7 @@ static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( const char * 
         ( topic > FleetProvisioningRejected ) ||
         ( pTemplateName == NULL ) ||
         ( templateNameLength == 0U ) ||
-        ( templateNameLength > FLEET_PROVISIONING_TEMPLATENAME_MAX_LENGTH ) ||
+        ( templateNameLength > FP_TEMPLATENAME_MAX_LENGTH ) ||
         ( pOutLength == NULL ) )
     {
         ret = FleetProvisioningBadParameter;
@@ -336,8 +336,8 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
     {
         status = consumeIfMatch( &pTopicCursor,
                                  &cursorLength,
-                                 FLEET_PROVISIONING_API_ACCEPTED_SUFFIX,
-                                 FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX );
+                                 FP_API_ACCEPTED_SUFFIX,
+                                 FP_API_LENGTH_ACCEPTED_SUFFIX );
 
         if( status == FleetProvisioningSuccess )
         {
@@ -357,8 +357,8 @@ static TopicSuffix_t parseTopicSuffix( const char * pRemainingTopic,
     {
         status = consumeIfMatch( &pTopicCursor,
                                  &cursorLength,
-                                 FLEET_PROVISIONING_API_REJECTED_SUFFIX,
-                                 FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX );
+                                 FP_API_REJECTED_SUFFIX,
+                                 FP_API_LENGTH_REJECTED_SUFFIX );
 
         if( status == FleetProvisioningSuccess )
         {
@@ -403,8 +403,8 @@ static TopicFormatSuffix_t parseTopicFormatSuffix( const char * pRemainingTopic,
     /* Check if JSON format */
     status = consumeIfMatch( &pTopicCursor,
                              &cursorLength,
-                             FLEET_PROVISIONING_API_JSON_FORMAT,
-                             FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT );
+                             FP_API_JSON_FORMAT,
+                             FP_API_LENGTH_JSON_FORMAT );
 
     if( status == FleetProvisioningSuccess )
     {
@@ -418,8 +418,8 @@ static TopicFormatSuffix_t parseTopicFormatSuffix( const char * pRemainingTopic,
         /* Check if CBOR format */
         status = consumeIfMatch( &pTopicCursor,
                                  &cursorLength,
-                                 FLEET_PROVISIONING_API_CBOR_FORMAT,
-                                 FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT );
+                                 FP_API_CBOR_FORMAT,
+                                 FP_API_LENGTH_CBOR_FORMAT );
 
         if( status == FleetProvisioningSuccess )
         {
@@ -458,8 +458,8 @@ static FleetProvisioningTopic_t parseCreateCertificateFromCsrTopic( const char *
     /* Check if prefix matches */
     status = consumeIfMatch( &pTopicCursor,
                              &cursorLength,
-                             FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX,
-                             FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_LENGTH_PREFIX );
+                             FP_CREATE_CERT_API_PREFIX,
+                             FP_CREATE_CERT_API_LENGTH_PREFIX );
 
     if( status == FleetProvisioningSuccess )
     {
@@ -497,8 +497,8 @@ static FleetProvisioningTopic_t parseCreateKeysAndCertificateTopic( const char *
     /* Check if prefix matches */
     status = consumeIfMatch( &pTopicCursor,
                              &cursorLength,
-                             FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX,
-                             FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_LENGTH_PREFIX );
+                             FP_CREATE_KEYS_API_PREFIX,
+                             FP_CREATE_KEYS_API_LENGTH_PREFIX );
 
     if( status == FleetProvisioningSuccess )
     {
@@ -536,8 +536,8 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
     /* Check if prefix matches */
     status = consumeIfMatch( &pTopicCursor,
                              &cursorLength,
-                             FLEET_PROVISIONING_REGISTER_THING_API_PREFIX,
-                             FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX );
+                             FP_REGISTER_API_PREFIX,
+                             FP_REGISTER_API_LENGTH_PREFIX );
 
     if( status == FleetProvisioningSuccess )
     {
@@ -551,8 +551,8 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
         /* Check if bridge matches */
         status = consumeIfMatch( &pTopicCursor,
                                  &cursorLength,
-                                 FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE,
-                                 FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE );
+                                 FP_REGISTER_API_BRIDGE,
+                                 FP_REGISTER_API_LENGTH_BRIDGE );
     }
 
     if( status == FleetProvisioningSuccess )
@@ -677,8 +677,8 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
 
         /* Write prefix first. */
         writeTopicFragmentAndAdvance( &pBufferCursor,
-                                      FLEET_PROVISIONING_REGISTER_THING_API_PREFIX,
-                                      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX );
+                                      FP_REGISTER_API_PREFIX,
+                                      FP_REGISTER_API_LENGTH_PREFIX );
 
         /* Write template name next. */
         writeTopicFragmentAndAdvance( &pBufferCursor,
@@ -687,37 +687,37 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
 
         /* Write bridge next. */
         writeTopicFragmentAndAdvance( &pBufferCursor,
-                                      FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE,
-                                      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE );
+                                      FP_REGISTER_API_BRIDGE,
+                                      FP_REGISTER_API_LENGTH_BRIDGE );
 
         /* Write report format. */
         if( format == FleetProvisioningJson )
         {
             writeTopicFragmentAndAdvance( &pBufferCursor,
-                                          FLEET_PROVISIONING_API_JSON_FORMAT,
-                                          FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT );
+                                          FP_API_JSON_FORMAT,
+                                          FP_API_LENGTH_JSON_FORMAT );
         }
 
         if( format == FleetProvisioningCbor )
         {
             writeTopicFragmentAndAdvance( &pBufferCursor,
-                                          FLEET_PROVISIONING_API_CBOR_FORMAT,
-                                          FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT );
+                                          FP_API_CBOR_FORMAT,
+                                          FP_API_LENGTH_CBOR_FORMAT );
         }
 
         /* Write report suffix. */
         if( topic == FleetProvisioningAccepted )
         {
             writeTopicFragmentAndAdvance( &pBufferCursor,
-                                          FLEET_PROVISIONING_API_ACCEPTED_SUFFIX,
-                                          FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX );
+                                          FP_API_ACCEPTED_SUFFIX,
+                                          FP_API_LENGTH_ACCEPTED_SUFFIX );
         }
 
         if( topic == FleetProvisioningRejected )
         {
             writeTopicFragmentAndAdvance( &pBufferCursor,
-                                          FLEET_PROVISIONING_API_REJECTED_SUFFIX,
-                                          FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX );
+                                          FP_API_REJECTED_SUFFIX,
+                                          FP_API_LENGTH_REJECTED_SUFFIX );
         }
 
         *pOutLength = topicLength;
