@@ -62,24 +62,24 @@ typedef enum
 typedef enum
 {
     FleetProvisioningInvalidTopic = 0,
-    FleetProvisioningJsonCreateCertificateFromCsrPublish,
-    FleetProvisioningJsonCreateCertificateFromCsrAccepted,
-    FleetProvisioningJsonCreateCertificateFromCsrRejected,
-    FleetProvisioningJsonCreateKeysAndCertificatePublish,
-    FleetProvisioningJsonCreateKeysAndCertificateAccepted,
-    FleetProvisioningJsonCreateKeysAndCertificateRejected,
-    FleetProvisioningJsonRegisterThingPublish,
-    FleetProvisioningJsonRegisterThingAccepted,
-    FleetProvisioningJsonRegisterThingRejected,
-    FleetProvisioningCborCreateCertificateFromCsrPublish,
-    FleetProvisioningCborCreateCertificateFromCsrAccepted,
-    FleetProvisioningCborCreateCertificateFromCsrRejected,
-    FleetProvisioningCborCreateKeysAndCertificatePublish,
-    FleetProvisioningCborCreateKeysAndCertificateAccepted,
-    FleetProvisioningCborCreateKeysAndCertificateRejected,
-    FleetProvisioningCborRegisterThingPublish,
-    FleetProvisioningCborRegisterThingAccepted,
-    FleetProvisioningCborRegisterThingRejected
+    FleetProvJsonCreateCertFromCsrPublish,
+    FleetProvJsonCreateCertFromCsrAccepted,
+    FleetProvJsonCreateCertFromCsrRejected,
+    FleetProvJsonCreateKeysAndCertPublish,
+    FleetProvJsonCreateKeysAndCertAccepted,
+    FleetProvJsonCreateKeysAndCertRejected,
+    FleetProvJsonRegisterThingPublish,
+    FleetProvJsonRegisterThingAccepted,
+    FleetProvJsonRegisterThingRejected,
+    FleetProvCborCreateCertFromCsrPublish,
+    FleetProvCborCreateCertFromCsrAccepted,
+    FleetProvCborCreateCertFromCsrRejected,
+    FleetProvCborCreateKeysAndCertPublish,
+    FleetProvCborCreateKeysAndCertAccepted,
+    FleetProvCborCreateKeysAndCertRejected,
+    FleetProvCborRegisterThingPublish,
+    FleetProvCborRegisterThingAccepted,
+    FleetProvCborRegisterThingRejected
 } FleetProvisioningTopic_t;
 
 /**
@@ -109,7 +109,7 @@ typedef enum
  * @ingroup fleet_provisioning_constants
  * @brief Maximum length of a thing's name as permitted by AWS IoT Core.
  */
-#define FLEET_PROVISIONING_TEMPLATENAME_MAX_LENGTH    36U
+#define FP_TEMPLATENAME_MAX_LENGTH    36U
 
 /*-----------------------------------------------------------*/
 
@@ -118,29 +118,29 @@ typedef enum
  * Doxygen should ignore these macros as they are private.
  */
 
-#define FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX           "$aws/certificates/create-from-csr/"
-#define FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_LENGTH_PREFIX    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX ) - 1U ) )
+#define FP_CREATE_CERT_API_PREFIX           "$aws/certificates/create-from-csr/"
+#define FP_CREATE_CERT_API_LENGTH_PREFIX    ( ( uint16_t ) ( sizeof( FP_CREATE_CERT_API_PREFIX ) - 1U ) )
 
-#define FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX           "$aws/certificates/create/"
-#define FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_LENGTH_PREFIX    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX ) - 1U ) )
+#define FP_CREATE_KEYS_API_PREFIX           "$aws/certificates/create/"
+#define FP_CREATE_KEYS_API_LENGTH_PREFIX    ( ( uint16_t ) ( sizeof( FP_CREATE_KEYS_API_PREFIX ) - 1U ) )
 
-#define FLEET_PROVISIONING_REGISTER_THING_API_PREFIX                        "$aws/provisioning-templates/"
-#define FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX                 ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_REGISTER_THING_API_PREFIX ) - 1U ) )
+#define FP_REGISTER_API_PREFIX              "$aws/provisioning-templates/"
+#define FP_REGISTER_API_LENGTH_PREFIX       ( ( uint16_t ) ( sizeof( FP_REGISTER_API_PREFIX ) - 1U ) )
 
-#define FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE                        "/provision/"
-#define FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE                 ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE ) - 1U ) )
+#define FP_REGISTER_API_BRIDGE              "/provision/"
+#define FP_REGISTER_API_LENGTH_BRIDGE       ( ( uint16_t ) ( sizeof( FP_REGISTER_API_BRIDGE ) - 1U ) )
 
-#define FLEET_PROVISIONING_API_JSON_FORMAT                                  "json"
-#define FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT                           ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_API_JSON_FORMAT ) - 1U ) )
+#define FP_API_JSON_FORMAT                  "json"
+#define FP_API_LENGTH_JSON_FORMAT           ( ( uint16_t ) ( sizeof( FP_API_JSON_FORMAT ) - 1U ) )
 
-#define FLEET_PROVISIONING_API_CBOR_FORMAT                                  "cbor"
-#define FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT                           ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_API_CBOR_FORMAT ) - 1U ) )
+#define FP_API_CBOR_FORMAT                  "cbor"
+#define FP_API_LENGTH_CBOR_FORMAT           ( ( uint16_t ) ( sizeof( FP_API_CBOR_FORMAT ) - 1U ) )
 
-#define FLEET_PROVISIONING_API_ACCEPTED_SUFFIX                              "/accepted"
-#define FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX                       ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_API_ACCEPTED_SUFFIX ) - 1U ) )
+#define FP_API_ACCEPTED_SUFFIX              "/accepted"
+#define FP_API_LENGTH_ACCEPTED_SUFFIX       ( ( uint16_t ) ( sizeof( FP_API_ACCEPTED_SUFFIX ) - 1U ) )
 
-#define FLEET_PROVISIONING_API_REJECTED_SUFFIX                              "/rejected"
-#define FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX                       ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_API_REJECTED_SUFFIX ) - 1U ) )
+#define FP_API_REJECTED_SUFFIX              "/rejected"
+#define FP_API_LENGTH_REJECTED_SUFFIX       ( ( uint16_t ) ( sizeof( FP_API_REJECTED_SUFFIX ) - 1U ) )
 
 /** @endcond */
 
@@ -151,84 +151,84 @@ typedef enum
 /**
  * @brief Topic string for publishing a JSON CreateCertificateFromCSR request.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX           \
-      FLEET_PROVISIONING_API_JSON_FORMAT )
+#define FP_JSON_CREATE_CERT_PUBLISH_TOPIC \
+    ( FP_CREATE_CERT_API_PREFIX           \
+      FP_API_JSON_FORMAT )
 
 /**
  * @brief Topic string for getting a JSON CreateCertificateFromCSR accepted response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX            \
-      FLEET_PROVISIONING_API_JSON_FORMAT                                   \
-      FLEET_PROVISIONING_API_ACCEPTED_SUFFIX )
+#define FP_JSON_CREATE_CERT_ACCEPTED_TOPIC \
+    ( FP_CREATE_CERT_API_PREFIX            \
+      FP_API_JSON_FORMAT                   \
+      FP_API_ACCEPTED_SUFFIX )
 
 /**
  * @brief Topic string for getting a JSON CreateCertificateFromCSR error response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_REJECTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX            \
-      FLEET_PROVISIONING_API_JSON_FORMAT                                   \
-      FLEET_PROVISIONING_API_REJECTED_SUFFIX )
+#define FP_JSON_CREATE_CERT_REJECTED_TOPIC \
+    ( FP_CREATE_CERT_API_PREFIX            \
+      FP_API_JSON_FORMAT                   \
+      FP_API_REJECTED_SUFFIX )
 
 /**
  * @brief Topic string for publishing a CBOR CreateCertificateFromCSR request.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX           \
-      FLEET_PROVISIONING_API_CBOR_FORMAT )
+#define FP_CBOR_CREATE_CERT_PUBLISH_TOPIC \
+    ( FP_CREATE_CERT_API_PREFIX           \
+      FP_API_CBOR_FORMAT )
 
 /**
  * @brief Topic string for getting a CBOR CreateCertificateFromCSR accepted response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX            \
-      FLEET_PROVISIONING_API_CBOR_FORMAT                                   \
-      FLEET_PROVISIONING_API_ACCEPTED_SUFFIX )
+#define FP_CBOR_CREATE_CERT_ACCEPTED_TOPIC \
+    ( FP_CREATE_CERT_API_PREFIX            \
+      FP_API_CBOR_FORMAT                   \
+      FP_API_ACCEPTED_SUFFIX )
 
 /**
  * @brief Topic string for getting a CBOR CreateCertificateFromCSR error response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_REJECTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_CERTIFICATE_FROM_CSR_API_PREFIX            \
-      FLEET_PROVISIONING_API_CBOR_FORMAT                                   \
-      FLEET_PROVISIONING_API_REJECTED_SUFFIX )
+#define FP_CBOR_CREATE_CERT_REJECTED_TOPIC \
+    ( FP_CREATE_CERT_API_PREFIX            \
+      FP_API_CBOR_FORMAT                   \
+      FP_API_REJECTED_SUFFIX )
 
 /**
  * @brief Length of topic string for publishing a JSON CreateCertificateFromCSR request.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC ) - 1U ) )
+#define FP_JSON_CREATE_CERT_PUBLISH_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_JSON_CREATE_CERT_PUBLISH_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a JSON CreateCertificateFromCSR accepted response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC ) - 1U ) )
+#define FP_JSON_CREATE_CERT_ACCEPTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_JSON_CREATE_CERT_ACCEPTED_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a JSON CreateCertificateFromCSR error response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_REJECTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_CERTIFICATE_FROM_CSR_REJECTED_TOPIC ) - 1U ) )
+#define FP_JSON_CREATE_CERT_REJECTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_JSON_CREATE_CERT_REJECTED_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for publishing a CBOR CreateCertificateFromCSR request.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_PUBLISH_TOPIC ) - 1U ) )
+#define FP_CBOR_CREATE_CERT_PUBLISH_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_CBOR_CREATE_CERT_PUBLISH_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a CBOR CreateCertificateFromCSR accepted response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_ACCEPTED_TOPIC ) - 1U ) )
+#define FP_CBOR_CREATE_CERT_ACCEPTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_CBOR_CREATE_CERT_ACCEPTED_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a CBOR CreateCertificateFromCSR error response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_REJECTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_CERTIFICATE_FROM_CSR_REJECTED_TOPIC ) - 1U ) )
+#define FP_CBOR_CREATE_CERT_REJECTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_CBOR_CREATE_CERT_REJECTED_TOPIC ) - 1U ) )
 
 /*-----------------------------------------------------------*/
 
@@ -237,86 +237,86 @@ typedef enum
 /**
  * @brief Topic string for publishing a JSON CreateKeysAndCertificate request.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX           \
-      FLEET_PROVISIONING_API_JSON_FORMAT )
+#define FP_JSON_CREATE_KEYS_PUBLISH_TOPIC \
+    ( FP_CREATE_KEYS_API_PREFIX           \
+      FP_API_JSON_FORMAT )
 
 /**
  * @brief Topic string for getting a JSON CreateKeysAndCertificate accepted response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX            \
-      FLEET_PROVISIONING_API_JSON_FORMAT                                   \
-      FLEET_PROVISIONING_API_ACCEPTED_SUFFIX )
+#define FP_JSON_CREATE_KEYS_ACCEPTED_TOPIC \
+    ( FP_CREATE_KEYS_API_PREFIX            \
+      FP_API_JSON_FORMAT                   \
+      FP_API_ACCEPTED_SUFFIX )
 
 /**
  * @brief Topic string for getting a JSON CreateKeysAndCertificate error
  * response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_REJECTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX            \
-      FLEET_PROVISIONING_API_JSON_FORMAT                                   \
-      FLEET_PROVISIONING_API_REJECTED_SUFFIX )
+#define FP_JSON_CREATE_KEYS_REJECTED_TOPIC \
+    ( FP_CREATE_KEYS_API_PREFIX            \
+      FP_API_JSON_FORMAT                   \
+      FP_API_REJECTED_SUFFIX )
 
 /**
  * @brief Topic string for publishing a CBOR CreateKeysAndCertificate request.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX           \
-      FLEET_PROVISIONING_API_CBOR_FORMAT )
+#define FP_CBOR_CREATE_KEYS_PUBLISH_TOPIC \
+    ( FP_CREATE_KEYS_API_PREFIX           \
+      FP_API_CBOR_FORMAT )
 
 /**
  * @brief Topic string for getting a CBOR CreateKeysAndCertificate accepted response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX            \
-      FLEET_PROVISIONING_API_CBOR_FORMAT                                   \
-      FLEET_PROVISIONING_API_ACCEPTED_SUFFIX )
+#define FP_CBOR_CREATE_KEYS_ACCEPTED_TOPIC \
+    ( FP_CREATE_KEYS_API_PREFIX            \
+      FP_API_CBOR_FORMAT                   \
+      FP_API_ACCEPTED_SUFFIX )
 
 /**
  * @brief Topic string for getting a CBOR CreateKeysAndCertificate error
  * response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_REJECTED_TOPIC \
-    ( FLEET_PROVISIONING_CREATE_KEYS_AND_CERTIFICATE_API_PREFIX            \
-      FLEET_PROVISIONING_API_CBOR_FORMAT                                   \
-      FLEET_PROVISIONING_API_REJECTED_SUFFIX )
+#define FP_CBOR_CREATE_KEYS_REJECTED_TOPIC \
+    ( FP_CREATE_KEYS_API_PREFIX            \
+      FP_API_CBOR_FORMAT                   \
+      FP_API_REJECTED_SUFFIX )
 
 /**
  * @brief Length of topic string for publishing a JSON CreateKeysAndCertificate request.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC ) - 1U ) )
+#define FP_JSON_CREATE_KEYS_PUBLISH_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_JSON_CREATE_KEYS_PUBLISH_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a JSON CreateKeysAndCertificate accepted response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC ) - 1U ) )
+#define FP_JSON_CREATE_KEYS_ACCEPTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_JSON_CREATE_KEYS_ACCEPTED_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a JSON CreateKeysAndCertificate error response.
  */
-#define FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_REJECTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_JSON_CREATE_KEYS_AND_CERTIFICATE_REJECTED_TOPIC ) - 1U ) )
+#define FP_JSON_CREATE_KEYS_REJECTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_JSON_CREATE_KEYS_REJECTED_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for publishing a CBOR CreateKeysAndCertificate request.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_PUBLISH_TOPIC ) - 1U ) )
+#define FP_CBOR_CREATE_KEYS_PUBLISH_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_CBOR_CREATE_KEYS_PUBLISH_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a CBOR CreateKeysAndCertificate accepted response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_ACCEPTED_TOPIC ) - 1U ) )
+#define FP_CBOR_CREATE_KEYS_ACCEPTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_CBOR_CREATE_KEYS_ACCEPTED_TOPIC ) - 1U ) )
 
 /**
  * @brief Length of topic string for getting a CBOR CreateKeysAndCertificate error response.
  */
-#define FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_REJECTED_TOPIC_LENGTH \
-    ( ( uint16_t ) ( sizeof( FLEET_PROVISIONING_CBOR_CREATE_KEYS_AND_CERTIFICATE_REJECTED_TOPIC ) - 1U ) )
+#define FP_CBOR_CREATE_KEYS_REJECTED_LENGTH \
+    ( ( uint16_t ) ( sizeof( FP_CBOR_CREATE_KEYS_REJECTED_TOPIC ) - 1U ) )
 
 /*-----------------------------------------------------------*/
 
@@ -332,11 +332,11 @@ typedef enum
  *
  * @param templateName The name of the provisioning template to use.
  */
-#define FLEET_PROVISIONING_JSON_REGISTER_THING_PUBLISH_TOPIC( templateName ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_PREFIX                           \
-      templateName                                                           \
-      FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE                           \
-      FLEET_PROVISIONING_API_JSON_FORMAT )
+#define FP_JSON_REGISTER_PUBLISH_TOPIC( templateName ) \
+    ( FP_REGISTER_API_PREFIX                           \
+      templateName                                     \
+      FP_REGISTER_API_BRIDGE                           \
+      FP_API_JSON_FORMAT )
 
 /**
  * @brief Topic string for getting a JSON RegisterThing accepted response.
@@ -347,12 +347,12 @@ typedef enum
  *
  * @param templateName The name of the provisioning template to use.
  */
-#define FLEET_PROVISIONING_JSON_REGISTER_THING_ACCEPTED_TOPIC( templateName ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_PREFIX                            \
-      templateName                                                            \
-      FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE                            \
-      FLEET_PROVISIONING_API_JSON_FORMAT                                      \
-      FLEET_PROVISIONING_API_ACCEPTED_SUFFIX )
+#define FP_JSON_REGISTER_ACCEPTED_TOPIC( templateName ) \
+    ( FP_REGISTER_API_PREFIX                            \
+      templateName                                      \
+      FP_REGISTER_API_BRIDGE                            \
+      FP_API_JSON_FORMAT                                \
+      FP_API_ACCEPTED_SUFFIX )
 
 /**
  * @brief Topic string for getting a JSON RegisterThing error response.
@@ -363,12 +363,12 @@ typedef enum
  *
  * @param templateName The name of the provisioning template to use.
  */
-#define FLEET_PROVISIONING_JSON_REGISTER_THING_REJECTED_TOPIC( templateName ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_PREFIX                            \
-      templateName                                                            \
-      FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE                            \
-      FLEET_PROVISIONING_API_JSON_FORMAT                                      \
-      FLEET_PROVISIONING_API_REJECTED_SUFFIX )
+#define FP_JSON_REGISTER_REJECTED_TOPIC( templateName ) \
+    ( FP_REGISTER_API_PREFIX                            \
+      templateName                                      \
+      FP_REGISTER_API_BRIDGE                            \
+      FP_API_JSON_FORMAT                                \
+      FP_API_REJECTED_SUFFIX )
 
 /**
  * @brief Topic string for publishing a CBOR RegisterThing request.
@@ -379,11 +379,11 @@ typedef enum
  *
  * @param templateName The name of the provisioning template to use.
  */
-#define FLEET_PROVISIONING_CBOR_REGISTER_THING_PUBLISH_TOPIC( templateName ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_PREFIX                           \
-      templateName                                                           \
-      FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE                           \
-      FLEET_PROVISIONING_API_CBOR_FORMAT )
+#define FP_CBOR_REGISTER_PUBLISH_TOPIC( templateName ) \
+    ( FP_REGISTER_API_PREFIX                           \
+      templateName                                     \
+      FP_REGISTER_API_BRIDGE                           \
+      FP_API_CBOR_FORMAT )
 
 /**
  * @brief Topic string for getting a CBOR RegisterThing accepted response.
@@ -394,12 +394,12 @@ typedef enum
  *
  * @param templateName The name of the provisioning template to use.
  */
-#define FLEET_PROVISIONING_CBOR_REGISTER_THING_ACCEPTED_TOPIC( templateName ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_PREFIX                            \
-      templateName                                                            \
-      FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE                            \
-      FLEET_PROVISIONING_API_CBOR_FORMAT                                      \
-      FLEET_PROVISIONING_API_ACCEPTED_SUFFIX )
+#define FP_CBOR_REGISTER_ACCEPTED_TOPIC( templateName ) \
+    ( FP_REGISTER_API_PREFIX                            \
+      templateName                                      \
+      FP_REGISTER_API_BRIDGE                            \
+      FP_API_CBOR_FORMAT                                \
+      FP_API_ACCEPTED_SUFFIX )
 
 /**
  * @brief Topic string for getting a CBOR RegisterThing error response.
@@ -410,12 +410,12 @@ typedef enum
  *
  * @param templateName The name of the provisioning template to use.
  */
-#define FLEET_PROVISIONING_CBOR_REGISTER_THING_REJECTED_TOPIC( templateName ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_PREFIX                            \
-      templateName                                                            \
-      FLEET_PROVISIONING_REGISTER_THING_API_BRIDGE                            \
-      FLEET_PROVISIONING_API_CBOR_FORMAT                                      \
-      FLEET_PROVISIONING_API_REJECTED_SUFFIX )
+#define FP_CBOR_REGISTER_REJECTED_TOPIC( templateName ) \
+    ( FP_REGISTER_API_PREFIX                            \
+      templateName                                      \
+      FP_REGISTER_API_BRIDGE                            \
+      FP_API_CBOR_FORMAT                                \
+      FP_API_REJECTED_SUFFIX )
 
 /**
  * @brief Length of topic string for publishing a JSON RegisterThing request.
@@ -426,11 +426,11 @@ typedef enum
  *
  * @param templateNameLength The length of the provisioning template name.
  */
-#define FLEET_PROVISIONING_JSON_REGISTER_THING_PUBLISH_TOPIC_LENGTH( templateNameLength ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                               \
-      ( templateNameLength ) +                                                            \
-      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE +                               \
-      FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT )
+#define FP_JSON_REGISTER_PUBLISH_LENGTH( templateNameLength ) \
+    ( FP_REGISTER_API_LENGTH_PREFIX +                         \
+      ( templateNameLength ) +                                \
+      FP_REGISTER_API_LENGTH_BRIDGE +                         \
+      FP_API_LENGTH_JSON_FORMAT )
 
 /**
  * @brief Length of topic string for getting a JSON RegisterThing accepted response.
@@ -441,12 +441,12 @@ typedef enum
  *
  * @param templateNameLength The length of the provisioning template name.
  */
-#define FLEET_PROVISIONING_JSON_REGISTER_THING_ACCEPTED_TOPIC_LENGTH( templateNameLength ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
-      ( templateNameLength ) +                                                             \
-      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE +                                \
-      FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT +                                          \
-      FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX )
+#define FP_JSON_REGISTER_ACCEPTED_LENGTH( templateNameLength ) \
+    ( FP_REGISTER_API_LENGTH_PREFIX +                          \
+      ( templateNameLength ) +                                 \
+      FP_REGISTER_API_LENGTH_BRIDGE +                          \
+      FP_API_LENGTH_JSON_FORMAT +                              \
+      FP_API_LENGTH_ACCEPTED_SUFFIX )
 
 /**
  * @brief Length of topic string for getting a JSON RegisterThing error response.
@@ -457,12 +457,12 @@ typedef enum
  *
  * @param templateNameLength The length of the provisioning template name.
  */
-#define FLEET_PROVISIONING_JSON_REGISTER_THING_REJECTED_TOPIC_LENGTH( templateNameLength ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
-      ( templateNameLength ) +                                                             \
-      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE +                                \
-      FLEET_PROVISIONING_API_LENGTH_JSON_FORMAT +                                          \
-      FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX )
+#define FP_JSON_REGISTER_REJECTED_LENGTH( templateNameLength ) \
+    ( FP_REGISTER_API_LENGTH_PREFIX +                          \
+      ( templateNameLength ) +                                 \
+      FP_REGISTER_API_LENGTH_BRIDGE +                          \
+      FP_API_LENGTH_JSON_FORMAT +                              \
+      FP_API_LENGTH_REJECTED_SUFFIX )
 
 /**
  * @brief Length of topic string for publishing a CBOR RegisterThing request.
@@ -473,11 +473,11 @@ typedef enum
  *
  * @param templateNameLength The length of the provisioning template name.
  */
-#define FLEET_PROVISIONING_CBOR_REGISTER_THING_PUBLISH_TOPIC_LENGTH( templateNameLength ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                               \
-      ( templateNameLength ) +                                                            \
-      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE +                               \
-      FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT )
+#define FP_CBOR_REGISTER_PUBLISH_LENGTH( templateNameLength ) \
+    ( FP_REGISTER_API_LENGTH_PREFIX +                         \
+      ( templateNameLength ) +                                \
+      FP_REGISTER_API_LENGTH_BRIDGE +                         \
+      FP_API_LENGTH_CBOR_FORMAT )
 
 /**
  * @brief Length of topic string for getting a CBOR RegisterThing accepted response.
@@ -488,12 +488,12 @@ typedef enum
  *
  * @param templateNameLength The length of the provisioning template name.
  */
-#define FLEET_PROVISIONING_CBOR_REGISTER_THING_ACCEPTED_TOPIC_LENGTH( templateNameLength ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
-      ( templateNameLength ) +                                                             \
-      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE +                                \
-      FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT +                                          \
-      FLEET_PROVISIONING_API_LENGTH_ACCEPTED_SUFFIX )
+#define FP_CBOR_REGISTER_ACCEPTED_LENGTH( templateNameLength ) \
+    ( FP_REGISTER_API_LENGTH_PREFIX +                          \
+      ( templateNameLength ) +                                 \
+      FP_REGISTER_API_LENGTH_BRIDGE +                          \
+      FP_API_LENGTH_CBOR_FORMAT +                              \
+      FP_API_LENGTH_ACCEPTED_SUFFIX )
 
 /**
  * @brief Length of topic string for getting a CBOR RegisterThing error response.
@@ -504,12 +504,12 @@ typedef enum
  *
  * @param templateNameLength The length of the provisioning template name.
  */
-#define FLEET_PROVISIONING_CBOR_REGISTER_THING_REJECTED_TOPIC_LENGTH( templateNameLength ) \
-    ( FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_PREFIX +                                \
-      ( templateNameLength ) +                                                             \
-      FLEET_PROVISIONING_REGISTER_THING_API_LENGTH_BRIDGE +                                \
-      FLEET_PROVISIONING_API_LENGTH_CBOR_FORMAT +                                          \
-      FLEET_PROVISIONING_API_LENGTH_REJECTED_SUFFIX )
+#define FP_CBOR_REGISTER_REJECTED_LENGTH( templateNameLength ) \
+    ( FP_REGISTER_API_LENGTH_PREFIX +                          \
+      ( templateNameLength ) +                                 \
+      FP_REGISTER_API_LENGTH_BRIDGE +                          \
+      FP_API_LENGTH_CBOR_FORMAT +                              \
+      FP_API_LENGTH_REJECTED_SUFFIX )
 
 /*-----------------------------------------------------------*/
 
@@ -608,14 +608,14 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
  *
  * if( status == FleetProvisioningSuccess )
  * {
- *      if( api == FleetProvisioningJsonCreateCertificateFromCsrAccepted )
+ *      if( api == FleetProvJsonCreateCertFromCsrAccepted )
  *      {
  *          // The published JSON request was accepted and completed by the AWS
  *          // IoT Fleet Provisioning service. You can parse the response using
  *          // your choice of JSON parser get the certificate, ID, and ownership
  *          // token.
  *      }
- *      else if( api == FleetProvisioningJsonCreateCertificateFromCsrRejected )
+ *      else if( api == FleetProvJsonCreateCertFromCsrRejected )
  *      {
  *          // The published JSON request was rejected by the AWS IoT Fleet
  *          // Provisioning service.
