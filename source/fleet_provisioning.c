@@ -80,7 +80,7 @@ static uint16_t getRegisterThingTopicLength( uint16_t templateNameLength,
  * The caller is responsible for assuring that there is enough space remaining
  * in the buffer to write the given string.
  *
- * @param[in, out] pBufferCursor Pointer to the remaining buffer.
+ * @param[in,out] pBufferCursor Pointer to the remaining buffer.
  * @param[in] fragment The piece of the topic string to write.
  * @param[in] length The length of @p fragment.
  */
@@ -183,8 +183,8 @@ static FleetProvisioningTopic_t parseRegisterThingTopic( const char * pTopic,
  * moves the remaining buffer pointer past the matched section and updates the
  * remaining length.
  *
- * @param[in, out] pBufferCursor Pointer to the remaining portion of the buffer.
- * @param[in, out] pRemainingLength The remaining length of the buffer.
+ * @param[in,out] pBufferCursor Pointer to the remaining portion of the buffer.
+ * @param[in,out] pRemainingLength The remaining length of the buffer.
  * @param[in] matchString The string to match against.
  * @param[in] matchLength The length of @p matchString.
  *
@@ -209,8 +209,8 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pBufferCursor,
  * The second topic is not a valid Fleet Provisioning topic and the matching
  * will fail when we try to match the bridge part.
  *
- * @param[in, out] pTopicCursor Pointer to the remaining topic string.
- * @param[in, out] pRemainingLength Pointer to the length of the remaining topic string.
+ * @param[in,out] pTopicCursor Pointer to the remaining topic string.
+ * @param[in,out] pRemainingLength Pointer to the length of the remaining topic string.
  *
  * @return FleetProvisioningSuccess if a valid template name is skipped over;
  * FleetProvisioningNoMatch otherwise.
