@@ -271,7 +271,7 @@ void test_FleetProvisioning_GetRegisterThingTopic_BadParams( void )
     /* Invalid Format. */
     ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                                    TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
-                                                   FleetProvisioningCbor + 1,
+                                                   ( FleetProvisioningFormat_t ) ( FleetProvisioningCbor + 1 ),
                                                    FleetProvisioningPublish,
                                                    TEST_TEMPLATE_NAME,
                                                    TEST_TEMPLATE_NAME_LENGTH,
@@ -285,7 +285,7 @@ void test_FleetProvisioning_GetRegisterThingTopic_BadParams( void )
     ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                                    TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
                                                    FleetProvisioningCbor,
-                                                   FleetProvisioningRejected + 1,
+                                                   ( FleetProvisioningApiTopics_t ) ( FleetProvisioningRejected + 1 ),
                                                    TEST_TEMPLATE_NAME,
                                                    TEST_TEMPLATE_NAME_LENGTH,
                                                    &( topicLength ) );
