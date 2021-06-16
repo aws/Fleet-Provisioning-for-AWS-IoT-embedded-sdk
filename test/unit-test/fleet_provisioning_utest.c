@@ -156,6 +156,44 @@ int suiteTearDown( int numFailures )
 }
 /*-----------------------------------------------------------*/
 
+/* Prototypes for test functions. */
+void test_RegisterThing_MacrosString( void );
+void test_RegisterThing_MacrosLength( void );
+void test_FleetProvisioning_GetRegisterThingTopic_BadParams( void );
+void test_FleetProvisioning_GetRegisterThingTopic_BufferTooSmall( void );
+void test_FleetProvisioning_GetRegisterThingTopic_JsonPublishHappyPath( void );
+void test_FleetProvisioning_GetRegisterThingTopic_JsonAcceptedHappyPath( void );
+void test_FleetProvisioning_GetRegisterThingTopic_JsonRejectedHappyPath( void );
+void test_FleetProvisioning_GetRegisterThingTopic_CborPublishHappyPath( void );
+void test_FleetProvisioning_GetRegisterThingTopic_CborAcceptedHappyPath( void );
+void test_FleetProvisioning_GetRegisterThingTopic_CborRejectedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_BadParams( void );
+void test_FleetProvisioning_MatchTopic_InvalidFormat( void );
+void test_FleetProvisioning_MatchTopic_ZeroLengthTemplateName( void );
+void test_FleetProvisioning_MatchTopic_RegisterThingMissingSuffix( void );
+void test_FleetProvisioning_MatchTopic_InvalidSuffix( void );
+void test_FleetProvisioning_MatchTopic_ExtraData( void );
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonPublishHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonAcceptedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrJsonRejectedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborPublishHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborAcceptedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateCertificateFromCsrCborRejectedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonPublishHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonAcceptedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateJsonRejectedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborPublishHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborAcceptedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_CreateKeysAndCertificateCborRejectedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_RegisterThingJsonPublishHappyPath( void );
+void test_FleetProvisioning_MatchTopic_RegisterThingJsonAcceptedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_RegisterThingJsonRejectedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_RegisterThingCborPublishHappyPath( void );
+void test_FleetProvisioning_MatchTopic_RegisterThingCborAcceptedHappyPath( void );
+void test_FleetProvisioning_MatchTopic_RegisterThingCborRejectedHappyPath( void );
+
+/*-----------------------------------------------------------*/
+
 /**
  * @brief Test that macros generate expected strings.
  */
@@ -233,7 +271,7 @@ void test_FleetProvisioning_GetRegisterThingTopic_BadParams( void )
     /* Invalid Format. */
     ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                                    TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
-                                                   FleetProvisioningCbor + 1,
+                                                   ( FleetProvisioningFormat_t ) ( FleetProvisioningCbor + 1 ),
                                                    FleetProvisioningPublish,
                                                    TEST_TEMPLATE_NAME,
                                                    TEST_TEMPLATE_NAME_LENGTH,
@@ -247,7 +285,7 @@ void test_FleetProvisioning_GetRegisterThingTopic_BadParams( void )
     ret = FleetProvisioning_GetRegisterThingTopic( &( testTopicBuffer[ TEST_TOPIC_BUFFER_PREFIX_GUARD_LENGTH ] ),
                                                    TEST_TOPIC_BUFFER_WRITABLE_LENGTH,
                                                    FleetProvisioningCbor,
-                                                   FleetProvisioningRejected + 1,
+                                                   ( FleetProvisioningApiTopics_t ) ( FleetProvisioningRejected + 1 ),
                                                    TEST_TEMPLATE_NAME,
                                                    TEST_TEMPLATE_NAME_LENGTH,
                                                    &( topicLength ) );
