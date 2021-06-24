@@ -295,15 +295,14 @@ static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( const char * 
     {
         ret = FleetProvisioningBadParameter;
 
-        LogError( ( "Invalid input parameter. pTopicBuffer: %p, bufferLength: %u, format: %d, "
-                    "topic: %d, pTemplateName: %p, templateNameLength: %u, pOutLength: %p.",
-                    ( void * ) pTopicBuffer,
-                    ( unsigned int ) bufferLength,
+        LogError( ( "Invalid input parameter. pTopicBuffer: %p, format: %d, topic: %d,"
+                    " pTemplateName: %p, templateNameLength: %u, pOutLength: %p.",
+                    ( const void * ) pTopicBuffer,
                     ( int ) format,
                     ( int ) topic,
-                    ( void * ) pTemplateName,
+                    ( const void * ) pTemplateName,
                     ( unsigned int ) templateNameLength,
-                    ( void * ) pOutLength ) );
+                    ( const void * ) pOutLength ) );
     }
     else
     {
@@ -737,7 +736,7 @@ FleetProvisioningStatus_t FleetProvisioning_MatchTopic( const char * pTopic,
     {
         ret = FleetProvisioningBadParameter;
         LogError( ( "Invalid input parameter. pTopic: %p, pOutApi: %p.",
-                    ( void * ) pTopic,
+                    ( const void * ) pTopic,
                     ( void * ) pOutApi ) );
     }
     else

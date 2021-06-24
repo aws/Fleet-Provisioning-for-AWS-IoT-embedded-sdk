@@ -27,9 +27,10 @@ COMPILE_FLAGS += -fPIC -std=gnu90
 #
 INCLUDES += -I$(CBMC_ROOT)/include
 INCLUDES += -I$(SRCDIR)/source/include
+INCLUDES += -I$(SRCDIR)/test/include
 
 # Preprocessor definitions -D...
-DEFINES += -DFLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG
+# DEFINES =
 
 # Path to arpa executable
 # ARPA =
