@@ -30,12 +30,12 @@
 
 #include <stdio.h>
 
-#define LogError( message )    printf message
+#define LogError( message )    printf( "Error: " ); printf message
 
-#define LogWarn( message )     printf message
+#define LogWarn( message )     printf( "Warn: " ); printf message
 
-#define LogInfo( message )     printf message
+#define LogInfo( message )     printf( "Info: " ); printf message
 
-#define LogDebug( message )    printf message
+#define LogDebug( message )    printf( "Debug: " ); printf message
 
 #endif /* FLEET_PROVISIONING_CONFIG_H_ */
