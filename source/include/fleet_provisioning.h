@@ -513,6 +513,75 @@ typedef enum
 
 /*-----------------------------------------------------------*/
 
+/* Key names for Fleet Provisioning MQTT API JSON/CBOR payloads. */
+
+/**
+ * @brief Key for the PEM-encoded certificate signing request in the
+ * CreateCertificateFromCSR request payload.
+ */
+#define FP_API_CSR_KEY                "certificateSigningRequest"
+
+/**
+ * @brief Key for the certificate ownership token in the
+ * CreateCertificateFromCSR and CreateKeysAndCertificate response payloads, and
+ * the RegisterThing request payload.
+ */
+#define FP_API_OWNERSHIP_TOKEN_KEY    "certificateOwnershipToken"
+
+/**
+ * @brief Key for the certificate ID in the CreateCertificateFromCSR and
+ * CreateKeysAndCertificate response payloads.
+ */
+#define FP_API_CERTIFICATE_ID_KEY     "certificateId"
+
+/**
+ * @brief Key for the PEM-encoded certificate in the CreateCertificateFromCSR
+ * and CreateKeysAndCertificate response payloads.
+ */
+#define FP_API_CERTIFICATE_PEM_KEY    "certificatePem"
+
+/**
+ * @brief Key for the private key in the CreateKeysAndCertificate response
+ * payload.
+ */
+#define FP_API_PRIVATE_KEY_KEY        "privateKey"
+
+/**
+ * @brief Key for the optional parameters in the RegisterThing request payload.
+ */
+#define FP_API_PARAMETERS_KEY         "parameters"
+
+/**
+ * @brief Key for the template-defined device configuration in the
+ * RegisterThing response payload.
+ */
+#define FP_API_DEVICE_CONFIG_KEY      "deviceConfiguration"
+
+/**
+ * @brief Key for the name of the created AWS IoT Thing in the RegisterThing
+ * response payload.
+ */
+#define FP_API_THING_NAME_KEY         "thingName"
+
+/**
+ * @brief Key for the status code in Fleet Provisioning error response
+ * payloads.
+ */
+#define FP_API_STATUS_CODE_KEY        "statusCode"
+
+/**
+ * @brief Key for the error code in Fleet Provisioning error response payloads.
+ */
+#define FP_API_ERROR_CODE_KEY         "errorCode"
+
+/**
+ * @brief Key for the error message in Fleet Provisioning error response
+ * payloads.
+ */
+#define FP_API_ERROR_MESSAGE_KEY      "errorMessage"
+
+/*-----------------------------------------------------------*/
+
 /**
  * @brief Populate the topic string for a Fleet Provisioning RegisterThing topic.
  *

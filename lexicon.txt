@@ -24,10 +24,10 @@ fleetprovisioningbuffertoosmall
 fleetprovisioningerror
 fleetprovisioninginvalidtopic
 fleetprovisioningjson
-fleetprovjsoncreatecertfromcsraccepted
-fleetprovjsoncreatecertfromcsrrejected
 fleetprovisioningnomatch
 fleetprovisioningsuccess
+fleetprovjsoncreatecertfromcsraccepted
+fleetprovjsoncreatecertfromcsrrejected
 gcc
 github
 html
@@ -51,6 +51,7 @@ noninfringement
 param
 pbuffer
 pbuffercursor
+pem
 posix
 poutapi
 poutlength
