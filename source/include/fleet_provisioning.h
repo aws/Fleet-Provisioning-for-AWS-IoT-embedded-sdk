@@ -31,6 +31,12 @@
 /* Standard includes. */
 #include <stdint.h>
 
+/* *INDENT-OFF* */
+#ifdef __cplusplus
+    extern "C" {
+#endif
+/* *INDENT-ON* */
+
 /* FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG allows building the Fleet
  * Provisioning library without a config file. If a config file is provided,
  * FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG macro must not be defined.
@@ -703,5 +709,11 @@ FleetProvisioningStatus_t FleetProvisioning_MatchTopic( const char * pTopic,
 /* @[declare_fleet_provisioning_matchtopic] */
 
 /*-----------------------------------------------------------*/
+
+/* *INDENT-OFF* */
+#ifdef __cplusplus
+    }
+#endif
+/* *INDENT-ON* */
 
 #endif /* FLEET_PROVISIONING_H_ */
