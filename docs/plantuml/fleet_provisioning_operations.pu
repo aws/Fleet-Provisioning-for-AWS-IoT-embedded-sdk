@@ -16,7 +16,7 @@ App -> MQTT : Connect to AWS IoT broker with claim credentials
 activate MQTT
 MQTT -> App : Connected
 deactivate MQTT
-    
+
 opt If using CreateCertificateFromCsr
     App -> App : Securely generate keys and corresponding CSR
 
@@ -37,7 +37,7 @@ opt If using CreateCertificateFromCsr
     activate MQTT
     MQTT -> App : Subscription Successful
     deactivate MQTT
-    
+
     App -> FleetProv : Get CreateCertificateFromCsr Publish Topic String
 
     activate FleetProv
@@ -56,15 +56,15 @@ opt If using CreateCertificateFromCsr
     activate FleetProv
     FleetProv -> App : Yes
     deactivate FleetProv
-    
+
     App -> JSON : Parse response payload
-    
+
     activate JSON
     JSON -> App : Certificate, certificate id, certificate ownership token
     deactivate JSON
-    
+
     App -> App : Securely store certificate
-    
+
 else If using CreateKeysAndCertificate
 
     App -> FleetProv : Generate Accepted and Rejected Topic Strings for RegisterThing
@@ -97,15 +97,15 @@ else If using CreateKeysAndCertificate
     activate FleetProv
     FleetProv -> App : Yes
     deactivate FleetProv
-    
+
     App -> JSON : Parse response payload
-    
+
     activate JSON
     JSON -> App : Private key, certificate, certificate id, certificate ownership token
     deactivate JSON
-    
+
     App -> App : Securely store key and certificate
-    
+
 end
 
 App -> JSON : Generate RegisterThing request payload
@@ -124,7 +124,7 @@ App -> MQTT : Subscribe to RegisterThing Accepted and Rejected Topics
 activate MQTT
 MQTT -> App : Subscription Successful
 deactivate MQTT
-    
+
 App -> FleetProv : Get RegisterThing Publish Topic String
 
 activate FleetProv
@@ -143,13 +143,13 @@ App -> FleetProv : Is this a Fleet Provisioning RegisterThing accepted Message?
 activate FleetProv
 FleetProv -> App : Yes
 deactivate FleetProv
-    
+
 App -> JSON : Parse response payload
-    
+
 activate JSON
 JSON -> App : Thing name, device configuration
 deactivate JSON
-    
+
 App -> MQTT : Disconnect from AWS IoT broker
 
 activate MQTT
