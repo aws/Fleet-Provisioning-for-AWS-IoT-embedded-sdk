@@ -43,7 +43,7 @@ The diagram below demonstrates the happy path an application can take to use
 the Fleet Provisioning library, a MQTT library, and a JSON or CBOR library to
 interact with the AWS IoT Fleet Provisioning APIs.
 
-\image html fleet_provisioning_operations.png "Fleet Provisioning Library example operation diagram" width=1000px
+\image html fleet_provisioning_operations.png "Fleet Provisioning Library example operation diagram" width=90%
 */
 
 /**
