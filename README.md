@@ -102,7 +102,7 @@ The [AWS IoT Embedded C-SDK repository][e1] contains a demo showing the use of
 the AWS IoT Fleet Provisioning Client Library on a POSIX platform [here][e2].
 
 [e1]: https://github.com/aws/aws-iot-device-sdk-embedded-C
-[e2]: https://github.com/aws/aws-iot-device-sdk-embedded-C/tree/main/demos/fleet_provisioning/fleet_provisioning_csr
+[e2]: https://github.com/aws/aws-iot-device-sdk-embedded-C/tree/main/demos/fleet_provisioning/fleet_provisioning_with_csr
 
 ## Generating documentation
 
