@@ -6,7 +6,7 @@
 @section fleet_provisioning_memory_requirements Memory Requirements
 @brief Memory requirements of the AWS IoT Fleet Provisioning Client Library.
 
-@include{doc} size_table.html
+@include{doc} size_table.md
  */
 
 /**

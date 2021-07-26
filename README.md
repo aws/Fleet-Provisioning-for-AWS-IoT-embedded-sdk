@@ -27,7 +27,7 @@ reasoning tool][a8].
 
 See memory requirements for this library [here][a9].
 
-[a9]: https://docs.aws.amazon.com/embedded-csdk/202107.00/lib-ref/libraries/aws/fleet-provisioning-for-aws-iot-embedded-sdk/docs/doxygen/output/html/index.html#fleet_provisioning_memory_requirements
+[a9]: ./docs/doxygen/include/size_table.md
 
 ## AWS IoT Fleet Provisioning Client Config File
 
