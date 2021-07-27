@@ -130,3 +130,7 @@ span.stringliteral, span.charliteral {
 a.code, a.code:visited, a.line, a.line:visited {
 	color: #496194;
 }
+
+div.image img[src="fleet_provisioning_operations.png"] {
+    max-width: 1000px;
+}

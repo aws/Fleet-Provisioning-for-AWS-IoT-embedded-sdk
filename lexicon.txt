@@ -1,9 +1,12 @@
 api
 apis
+app
 aws
 br
 bufferlength
+ca
 cbor
+cert
 com
 cond
 config
@@ -14,6 +17,7 @@ createcertificatefromcsr
 createkeysandcertificate
 css
 defgroup
+developerguide
 doxygen
 endcode
 endcond
@@ -44,6 +48,8 @@ logwarn
 mainpage
 matchlength
 matchstring
+md
+mdash
 memcpy
 misra
 mqtt
@@ -52,6 +58,7 @@ param
 pbuffer
 pbuffercursor
 pem
+png
 posix
 poutapi
 poutlength
@@ -73,3 +80,4 @@ sublicense
 templatename
 templatenamelength
 topiclength
+wo
