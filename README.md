@@ -2,7 +2,7 @@
 
 The Fleet Provisioning library enables you to provision IoT devices without
 device certificates using the [AWS IoT Fleet Provisioning Service][a1]. For an
-overview of provisioning options availible, see [Device provisioning][a2]. This
+overview of provisioning options available, see [Device provisioning][a2]. This
 library has no dependencies on any additional libraries other than the standard
 C library, and therefore, can be used with any MQTT client library. This library
 is distributed under the [MIT Open Source License][a3].
@@ -41,7 +41,7 @@ provided by the application to the library.
 [b1]: source/include/fleet_provisioning_config_defaults.h
 
 By default, a `fleet_provisioning_config.h` config file is required to build
-the library. to disable this requirement and build the library with default
+the library. To disable this requirement and build the library with default
 configuration values, provide `FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG` as
 a compile time preprocessor macro.
 
