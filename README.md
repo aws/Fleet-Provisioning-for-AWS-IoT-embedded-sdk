@@ -20,7 +20,7 @@ analysis][a7], and validation of memory safety through the [CBMC automated
 reasoning tool][a8].
 
 [a4]: https://www.gnu.org/software/complexity/manual/complexity.html
-[a5]: https://www.misra.org.uk/MISRAHome/MISRAC2012/tabid/196/Default.aspx
+[a5]: https://www.misra.org.uk
 [a6]: MISRA.md
 [a7]: https://scan.coverity.com/
 [a8]: https://www.cprover.org/cbmc/
