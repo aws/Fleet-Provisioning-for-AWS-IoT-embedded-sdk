@@ -1,5 +1,5 @@
 name: "Fleet-Provisioning-for-AWS-IoT-embedded-sdk"
 version: "v1.0.0"
 description: |
-  "Client library for using the AWS IoT Fleet Provisioning service on embedded devices.\n"
+  "Library for using the Fleet Provisioning feature of AWS IoT Core on embedded devices.\n"
 license: "MIT"

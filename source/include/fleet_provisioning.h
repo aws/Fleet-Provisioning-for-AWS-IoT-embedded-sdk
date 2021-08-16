@@ -1,5 +1,5 @@
 /*
- * AWS IoT Fleet Provisioning Client v1.0.0
+ * AWS IoT Fleet Provisioning v1.0.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,7 +22,7 @@
 
 /**
  * @file fleet_provisioning.h
- * @brief Interface for the AWS IoT Fleet Provisioning Client Library.
+ * @brief Interface for the AWS IoT Fleet Provisioning Library.
  */
 
 #ifndef FLEET_PROVISIONING_H_
@@ -634,7 +634,7 @@ typedef enum
  * {
  *      // The buffer pTopicBuffer contains the topic string of length
  *      // topicLength for getting a response for an accepted JSON RegisterThing
- *      // request. Subscribe to this topic using an MQTT client of your choice.
+ *      // request. Subscribe to this topic using an MQTT library of your choice.
  * }
  * @endcode
  */
@@ -676,7 +676,7 @@ FleetProvisioningStatus_t FleetProvisioning_GetRegisterThingTopic( char * pTopic
  *
  * // pTopic and topicLength are the topic string and length of the topic on
  * // which the publish message is received. These are usually provided by the
- * // MQTT client used.
+ * // MQTT library used.
  * status = FleetProvisioning_MatchTopic( pTopic
  *                                        topicLength,
  *                                        &( api ) );
