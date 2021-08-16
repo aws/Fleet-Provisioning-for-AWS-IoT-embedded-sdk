@@ -1,9 +1,9 @@
 # MISRA Compliance
 
-The Fleet Provisioning Client Library files conform to the
-[MISRA C:2012](https://www.misra.org.uk)
-guidelines, with some noted exceptions. Compliance is checked with Coverity static analysis.
-Deviations from the MISRA standard are listed below:
+The Fleet Provisioning Library files conform to the [MISRA
+C:2012](https://www.misra.org.uk) guidelines, with some noted exceptions.
+Compliance is checked with Coverity static analysis. Deviations from the MISRA
+standard are listed below:
 
 ### Ignored by [Coverity Configuration](tools/coverity/misra.config)
 | Deviation | Category | Justification |
