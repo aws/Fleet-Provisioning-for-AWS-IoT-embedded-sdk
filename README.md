@@ -4,8 +4,8 @@ The Fleet Provisioning library enables you to provision IoT devices without
 device certificates using the [AWS IoT Fleet Provisioning Service][a1]. For an
 overview of provisioning options available, see [Device provisioning][a2]. This
 library has no dependencies on any additional libraries other than the standard
-C library, and therefore, can be used with any MQTT client library. This library
-is distributed under the [MIT Open Source License][a3].
+C library, and therefore, can be used with any MQTT library. This library is
+distributed under the [MIT Open Source License][a3].
 
 [a1]: https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html
 [a2]: https://docs.aws.amazon.com/iot/latest/developerguide/iot-provision.html
@@ -29,9 +29,9 @@ See memory requirements for this library [here][a9].
 
 [a9]: ./docs/doxygen/include/size_table.md
 
-## AWS IoT Fleet Provisioning Client Config File
+## AWS IoT Fleet Provisioning Library Config File
 
-The AWS IoT Fleet Provisioning Client Library exposes build configuration
+The AWS IoT Fleet Provisioning Library exposes build configuration
 macros that are required for building the library. A list of all the
 configurations and their default values are defined in
 [fleet\_provisioning\_config\_defaults.h][b1]. To provide custom values for the
@@ -45,7 +45,7 @@ the library. To disable this requirement and build the library with default
 configuration values, provide `FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG` as
 a compile time preprocessor macro.
 
-**Thus, the Fleet Provisioning client library can be built by either**:
+**Thus, the Fleet Provisioning library can be built by either**:
 
 * Defining a `fleet_provisioning_config.h` file in the application, and adding
   it to the include directories list of the library.
@@ -59,15 +59,15 @@ a compile time preprocessor macro.
 
 The [fleetprovisioningFilePaths.cmake][c1] file contains the information of all
 source files and the header include paths required to build the Fleet
-Provisioning client library.
+Provisioning library.
 
 [c1]: fleetprovisioningFilePaths.cmake
 
 As mentioned in the previous section, either a custom config file (i.e.
 `fleet_provisioning_config.h`) or `FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG`
-macro needs to be provided to build the Fleet Provisioning client library.
+macro needs to be provided to build the Fleet Provisioning library.
 
-For a CMake example of building the Fleet Provisioning client library with the
+For a CMake example of building the Fleet Provisioning library with the
 `fleetprovisioningFilePaths.cmake` file, refer to the `coverity_analysis`
 library target in [test/CMakeLists.txt][c2] file.
 
@@ -99,7 +99,7 @@ library target in [test/CMakeLists.txt][c2] file.
 ## Reference examples
 
 The [AWS IoT Embedded C-SDK repository][e1] contains a demo showing the use of
-the AWS IoT Fleet Provisioning Client Library on a POSIX platform [here][e2].
+the AWS IoT Fleet Provisioning Library on a POSIX platform [here][e2].
 
 [e1]: https://github.com/aws/aws-iot-device-sdk-embedded-C
 [e2]: https://github.com/aws/aws-iot-device-sdk-embedded-C/tree/main/demos/fleet_provisioning/fleet_provisioning_with_csr
