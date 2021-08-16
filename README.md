@@ -1,11 +1,11 @@
 # AWS IoT Fleet Provisioning Library
 
 The Fleet Provisioning library enables you to provision IoT devices without
-device certificates using the [AWS IoT Fleet Provisioning Service][a1]. For an
-overview of provisioning options available, see [Device provisioning][a2]. This
-library has no dependencies on any additional libraries other than the standard
-C library, and therefore, can be used with any MQTT library. This library is
-distributed under the [MIT Open Source License][a3].
+device certificates using the [Fleet Provisioning feature of AWS IoT Core][a1].
+For an overview of provisioning options available, see [Device
+provisioning][a2]. This library has no dependencies on any additional libraries
+other than the standard C library, and therefore, can be used with any MQTT
+library. This library is distributed under the [MIT Open Source License][a3].
 
 [a1]: https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html
 [a2]: https://docs.aws.amazon.com/iot/latest/developerguide/iot-provision.html
