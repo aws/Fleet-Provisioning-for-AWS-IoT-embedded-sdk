@@ -112,3 +112,7 @@ jobs:
           asset_path: ./Fleet-Provisioning-for-AWS-IoT-embedded-sdk-${{ github.event.inputs.version_number }}.zip
           asset_name: Fleet-Provisioning-for-AWS-IoT-embedded-sdk-${{ github.event.inputs.version_number }}.zip
           asset_content_type: application/zip
+      - name: Doxygen generation
+        uses: FreeRTOS/CI-CD-Github-Actions/doxygen-generation@main
+        with:
+          ref: ${{ github.event.inputs.version_number }}
