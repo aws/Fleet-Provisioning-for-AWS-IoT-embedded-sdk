@@ -96,6 +96,14 @@ library target in [test/CMakeLists.txt][c2] file.
 
 1. Run `cd build && ctest` to execute all tests and view the test run summary.
 
+## CBMC
+
+To learn more about CBMC and proofs specifically, review the training material [here](https://model-checking.github.io/cbmc-training).
+
+The `test/cbmc/proofs` directory contains CBMC proofs.
+
+In order to run these proofs you will need to install CBMC and other tools by following the instructions [here](https://model-checking.github.io/cbmc-training/installation.html).
+
 ## Reference examples
 
 The [AWS IoT Embedded C-SDK repository][e1] contains a demo showing the use of
