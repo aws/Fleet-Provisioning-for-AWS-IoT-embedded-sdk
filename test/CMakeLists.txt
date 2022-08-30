@@ -45,6 +45,10 @@ target_include_directories( coverity_analysis PUBLIC
                             ${FLEET_PROVISIONING_INCLUDE_PUBLIC_DIRS}
                             "${CMAKE_CURRENT_LIST_DIR}/include" )
 
+
+# Build without debug enabled when performing static analysis
+target_compile_options(coverity_analysis PUBLIC -DNDEBUG -DDISABLE_LOGGING)
+
 #  ============================  Test Configuration ============================
 
 # Include Unity build configuration.
