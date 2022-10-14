@@ -1,6 +1,6 @@
 # Changelog for AWS IoT Fleet Provisioning Library
 
-## v1.1.0 (September 2022)
+## v1.1.0 (October 2022)
 
 ### Updates
 - [#26](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/26) MISRA C:2012 Compliance Update

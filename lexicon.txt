@@ -52,6 +52,7 @@ md
 mdash
 memcpy
 misra
+mit
 mqtt
 noninfringement
 param
@@ -75,6 +76,7 @@ registerthing
 remaininglength
 ret
 sdk
+spdx
 sizeof
 sublicense
 templatename
