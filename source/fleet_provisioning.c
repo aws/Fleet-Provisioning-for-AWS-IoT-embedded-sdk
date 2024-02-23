@@ -272,7 +272,7 @@ static void writeTopicFragmentAndAdvance( char ** pBufferCursor,
                      ( const void * ) fragment,
                      ( size_t ) length );
 
-    *pBufferCursor += length;
+    *pBufferCursor = &( ( *pBufferCursor )[ length ] );
 }
 /*-----------------------------------------------------------*/
 
@@ -597,7 +597,7 @@ static FleetProvisioningStatus_t consumeIfMatch( const char ** pBufferCursor,
         else
         {
             status = FleetProvisioningSuccess;
-            *pBufferCursor += matchLength;
+            *pBufferCursor = &( ( *pBufferCursor )[ matchLength ] );
             *pRemainingLength -= matchLength;
         }
     }
@@ -629,7 +629,7 @@ static FleetProvisioningStatus_t consumeTemplateName( const char ** pTopicCursor
     if( i > 0U )
     {
         ret = FleetProvisioningSuccess;
-        *pTopicCursor += i;
+        *pTopicCursor = &( ( *pTopicCursor )[ i ] );
         *pRemainingLength -= i;
     }
 
