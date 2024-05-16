@@ -286,8 +286,8 @@ static FleetProvisioningStatus_t GetRegisterThingTopicCheckParams( const char * 
     FleetProvisioningStatus_t ret = FleetProvisioningError;
 
     if( ( pTopicBuffer == NULL ) ||
-        ( format > FleetProvisioningCbor ) ||
-        ( topic > FleetProvisioningRejected ) ||
+        !( ( format >= FleetProvisioningJson ) && ( format <= FleetProvisioningCbor ) ) ||
+        !( ( topic >= FleetProvisioningPublish ) && ( topic <= FleetProvisioningRejected ) ) ||
         ( pTemplateName == NULL ) ||
         ( templateNameLength == 0U ) ||
         ( templateNameLength > FP_TEMPLATENAME_MAX_LENGTH ) ||

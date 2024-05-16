@@ -46,11 +46,6 @@ void harness()
      * lengths as well. */
     __CPROVER_assume( templateNameLength <= ( FP_TEMPLATENAME_MAX_LENGTH + 1 ) );
 
-    /* Assume that format and topics are in valid enum range since library has
-     * asserts to catch out of range cases. */
-    __CPROVER_assume( ( format >= FleetProvisioningJson ) && ( format <= FleetProvisioningCbor ) );
-    __CPROVER_assume( ( topic >= FleetProvisioningPublish ) && ( topic <= FleetProvisioningRejected ) );
-
     pTopicBuffer = malloc( topicBufferLength );
     pTemplateName = malloc( templateNameLength );
     pOutLength = malloc( sizeof( *pOutLength ) );
