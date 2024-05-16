@@ -1,5 +1,13 @@
 # Changelog for AWS IoT Fleet Provisioning Library
 
+## v1.2.0 (May 2024)
+
+### Other
+- [#41](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/41) Fix warnings with ARM GCC compiler when compiled with -Wextra
+- [#40](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/40) Add CBMC proof check action in Github CI
+- [#39](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/39) MISRA C:2012 compliance checked with Coverity static analysis version 2023.6.1
+- [#34](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/34) Update doxygen version to 1.9.6
+
 ## v1.1.0 (October 2022)
 
 ### Updates

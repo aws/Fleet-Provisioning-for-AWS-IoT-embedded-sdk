@@ -45,4 +45,5 @@ utest
 vect
 Vect
 VECT
+Wextra
 Wunused
