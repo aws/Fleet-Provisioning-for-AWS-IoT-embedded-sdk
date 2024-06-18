@@ -1,5 +1,10 @@
 # Changelog for AWS IoT Fleet Provisioning Library
 
+## v1.2.1 (June 2024)
+
+### Other
+- Fix doxygen deployment on Github.
+
 ## v1.2.0 (May 2024)
 
 ### Other
