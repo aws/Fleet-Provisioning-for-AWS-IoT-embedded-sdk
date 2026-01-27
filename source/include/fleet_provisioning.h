@@ -39,6 +39,16 @@
 #endif
 /* *INDENT-ON* */
 
+/**
+ * @cond DOXYGEN_IGNORE
+ * The current version of this library.
+ *
+ * If FLEET_PROVISIONING_LIBRARY_VERSION ends with + it represents the version in development
+ * after the numbered release.
+ */
+#define FLEET_PROVISIONING_LIBRARY_VERSION    "v1.2.1+"
+/** @endcond */
+
 /* FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG allows building the Fleet
  * Provisioning library without a config file. If a config file is provided,
  * FLEET_PROVISIONING_DO_NOT_USE_CUSTOM_CONFIG macro must not be defined.
