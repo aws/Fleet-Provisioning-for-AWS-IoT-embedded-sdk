@@ -1,5 +1,5 @@
 /*
- * AWS IoT Fleet Provisioning v1.2.1
+ * AWS IoT Fleet Provisioning
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * SPDX-License-Identifier: MIT
