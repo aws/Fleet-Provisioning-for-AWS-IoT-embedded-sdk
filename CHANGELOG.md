@@ -1,5 +1,13 @@
 # Changelog for AWS IoT Fleet Provisioning Library
 
+## v1.2.2 (March 2026)
+
+### Other
+- [#51](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/51) Add artifact backup action
+- [#50](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/50) Remove formatting bot workflow
+- [#49](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/49) Update coverity link
+- [#48](https://github.com/aws/Fleet-Provisioning-for-AWS-IoT-embedded-sdk/pull/48) Adjust proof tooling to support CBMC v6
+
 ## v1.2.1 (June 2024)
 
 ### Other

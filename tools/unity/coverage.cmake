@@ -17,9 +17,10 @@ execute_process( COMMAND lcov --directory ${CMAKE_BINARY_DIR}
                          --base-directory ${CMAKE_BINARY_DIR}
                          --initial
                          --capture
-                         --rc lcov_branch_coverage=1
+                         --rc branch_coverage=1
                          --rc genhtml_branch_coverage=1
-                         --output-file=${CMAKE_BINARY_DIR}/base_coverage.info )
+                         --output-file=${CMAKE_BINARY_DIR}/base_coverage.info
+                         --include "*source*" )
 
 # Capture all the test binaries.
 file( GLOB files "${CMAKE_BINARY_DIR}/bin/tests/*" )
@@ -47,11 +48,12 @@ execute_process( COMMAND ruby
 
 # Capture coverage data after test run.
 execute_process( COMMAND lcov --capture
-                         --rc lcov_branch_coverage=1
+                         --rc branch_coverage=1
                          --rc genhtml_branch_coverage=1
                          --base-directory ${CMAKE_BINARY_DIR}
                          --directory ${CMAKE_BINARY_DIR}
-                         --output-file ${CMAKE_BINARY_DIR}/second_coverage.info )
+                         --output-file ${CMAKE_BINARY_DIR}/second_coverage.info
+                         --include "*source*" )
 
 # Combine baseline coverage data (zeros) with the coverage data from test run.
 execute_process( COMMAND lcov --base-directory ${CMAKE_BINARY_DIR}
@@ -60,10 +62,11 @@ execute_process( COMMAND lcov --base-directory ${CMAKE_BINARY_DIR}
                          --add-tracefile ${CMAKE_BINARY_DIR}/second_coverage.info
                          --output-file ${CMAKE_BINARY_DIR}/coverage.info
                          --no-external
-                         --rc lcov_branch_coverage=1 )
+                         --rc branch_coverage=1
+                         --include "*source*" )
 
 # Generate HTML Report.
-execute_process( COMMAND genhtml --rc lcov_branch_coverage=1
+execute_process( COMMAND genhtml --rc branch_coverage=1
                          --branch-coverage
                          --output-directory ${CMAKE_BINARY_DIR}/coverage
                          ${CMAKE_BINARY_DIR}/coverage.info )
